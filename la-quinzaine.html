@@ -18,7 +18,8 @@
   .p-hero .art i:nth-of-type(3n) { width: 70%; }
   @keyframes sway { 50% { transform: rotate(1deg) translateY(-8px); } }
   .issues { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 40%), 1fr)); gap: 28px 20px; }
-  .issue a { display: block; text-decoration: none; }
+  .issue a, .issue > div { display: block; text-decoration: none; }
+  .issues .ev-empty { grid-column: 1 / -1; }
   .issue .cover { aspect-ratio: 3 / 4; background: var(--quinz); display: grid; place-items: center; overflow: hidden; margin-bottom: 12px; transition: transform .25s; }
   .issue .cover img { width: 100%; height: 100%; object-fit: cover; }
   .issue .cover span { font-stretch: 112%; font-weight: 800; font-size: 64px; letter-spacing: -0.05em; color: var(--quinz-fg); }
@@ -36,7 +37,7 @@
     <div class="wrap">
       <a class="back" href="index.html">← Accueil</a>
       <h1 class="display">La<br>Quinzaine</h1>
-      <p class="lead">Le journal de GEM en Débat. Chaque mois, 300 à 500 exemplaires, devenus une vraie institution à l'école.</p>
+      <p class="lead" data-texte="quinzaine-intro">Le journal de GEM en Débat. Chaque mois, 300 à 500 exemplaires, devenus une vraie institution à l'école.</p>
     </div>
     <span class="art" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
   </section>
@@ -46,7 +47,6 @@
       <h2 class="display">Les numéros</h2>
       <div class="body">
         <ul class="issues" id="issues"></ul>
-        <span class="todo">Numéros d'exemple à remplacer</span>
       </div>
     </div>
   </section>
@@ -54,7 +54,7 @@
   <section class="sec">
     <div class="wrap">
       <h2 class="display">La rédaction</h2>
-      <div class="body">
+      <div class="body" data-texte="quinzaine-redaction">
         <p>La Quinzaine est écrite par le pôle Rédaction, en toute liberté éditoriale. Chaque mois, des sujets variés et surprenants : la montagne, les gangsters, la ville de Grenoble… sans perdre de vue l'actualité et la vie étudiante.</p>
         <p>Recherche d'idées, écriture, relecture, mise en page : le journal vise un résultat professionnel et prépare ses rédacteurs au monde du journalisme.</p>
         <p>Pour ses lecteurs, c'est une pause stimulante pour découvrir de nouveaux sujets, tout en restant connecté à la vie de GEM. La Quinzaine est réservée aux étudiants de GEM.</p>
@@ -66,28 +66,21 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script>
-/* =========================================================
-   LES NUMÉROS — ajouter les nouveaux numéros en haut de la liste.
-   lien : lien du PDF ou de la page du numéro
-   couverture : lien d'une image de la une (facultatif)
-   ========================================================= */
-const NUMEROS = [
-  // ↓ EXEMPLES À REMPLACER
-  { numero: 3, titre: "Titre du numéro", date: "Novembre 2026", lien: "#", couverture: "" },
-  { numero: 2, titre: "Titre du numéro", date: "Octobre 2026", lien: "#", couverture: "" },
-  { numero: 1, titre: "Titre du numéro", date: "Octobre 2026", lien: "#", couverture: "" },
-];
-
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-document.getElementById("issues").innerHTML = NUMEROS.map(n => `
-  <li class="issue">
-    <a href="${esc(n.lien)}" target="_blank" rel="noopener">
-      <div class="cover">${n.couverture ? `<img src="${esc(n.couverture)}" alt="La Quinzaine n°${esc(n.numero)}" loading="lazy">` : `<span>n°${esc(n.numero)}</span>`}</div>
-      <h3>${esc(n.titre)}</h3>
-      <p>N°${esc(n.numero)} · ${esc(n.date)}</p>
-    </a>
-  </li>`).join("");
+// les numéros viennent de l'onglet « Quinzaine » du Google Sheet, le plus récent en premier
+CONTENU.tab("Quinzaine").then(rows => {
+  const { get, image, esc } = CONTENU;
+  const list = rows.filter(r => get(r, "titre") || get(r, "numero"));
+  document.getElementById("issues").innerHTML = list.length ? list.map(r => {
+    const n = get(r, "numero"), titre = get(r, "titre"), cover = image(get(r, "couverture"), 600), lien = get(r, "pdf", "lien");
+    const inner = `
+      <div class="cover">${cover ? `<img src="${esc(cover)}" alt="La Quinzaine n°${esc(n)}" loading="lazy" referrerpolicy="no-referrer">` : `<span>n°${esc(n)}</span>`}</div>
+      <h3>${esc(titre)}</h3>
+      <p>${[n && `N°${esc(n)}`, esc(get(r, "date"))].filter(Boolean).join(" · ")}</p>`;
+    return `<li class="issue">${lien ? `<a href="${esc(lien)}" target="_blank" rel="noopener">${inner}</a>` : `<div>${inner}</div>`}</li>`;
+  }).join("") : `<li class="ev-empty">Les numéros de la saison arrivent bientôt.</li>`;
+});
 </script>
 </body>
 </html>

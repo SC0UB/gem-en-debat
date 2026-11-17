@@ -1,91 +1,7 @@
 /* =========================================================
    GEM en Débat — les événements (partagé par toutes les pages)
-
-   Les membres de l'asso ajoutent les événements avec le Google Form.
-   Les réponses arrivent dans un Google Sheet, que le site lit ici.
-   Coller ci-dessous le lien « Publier sur le Web » du Sheet, au format CSV
-   (voir GUIDE-evenements.md).
+   Ils viennent de l'onglet « Événements » du Google Sheet (voir assets/contenu.js).
    ========================================================= */
-const SHEET_CSV = "";
-
-/* Événements de secours, utilisés tant que SHEET_CSV est vide
-   ou si le Sheet ne répond pas.
-   date : "AAAA-MM-JJTHH:MM" (heure de Grenoble) */
-const EVENEMENTS = [
-  {
-    type: "Conférence",
-    titre: "Sport et handicap",
-    date: "2026-10-07T17:00",
-    lieu: "Auditorium Jean-François Fiorina, GEM",
-    intervenants: "nos invités",
-    inscription: "https://www.helloasso.com/associations/gem-en-debat/evenements/conference-sport-et-handicap",
-  },
-  {
-    type: "Conférence",
-    titre: "Entreprendre, échouer et se relever",
-    date: "2026-10-29T17:00",
-    lieu: "Auditorium GEM, Grenoble",
-    intervenants: "Joël Manly (Banque de France Isère) et Patrice Canac (60 000 rebonds)",
-    inscription: "",
-  },
-  // ↓ Prochaines conférences (dates en cours de calage : horaires, lieux et liens HelloAsso à compléter)
-  {
-    type: "Conférence",
-    titre: "La fabrique des nouveaux masculinistes",
-    date: "2026-11-12T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "intervenants à annoncer",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "Rencontre avec François Hollande",
-    date: "2026-11-16T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "François Hollande",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "L'art, une entreprise comme les autres ?",
-    date: "2026-11-17T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "intervenants à annoncer",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "Pour en finir avec la méritocratie",
-    date: "2026-11-23T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "intervenants à annoncer",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "CIC et immobilier",
-    date: "2026-11-24T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "le CIC",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "Et si on bifurquait ?",
-    date: "2026-12-02T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "intervenants à annoncer",
-    inscription: "",
-  },
-  {
-    type: "Conférence",
-    titre: "Rencontre politique (7-8 décembre)",
-    date: "2026-12-07T18:00",
-    lieu: "GEM, Grenoble",
-    intervenants: "intervenants à annoncer",
-    inscription: "",
-  },
-];
 
 /* couleur de chaque type d'événement : [fond, texte] */
 const TYPES = {
@@ -112,27 +28,7 @@ const TYPES = {
   const fmtLong = d => `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} · ${hour(d)}`;
   const colors = type => TYPES[type] || TYPES["Autre"];
 
-  /* ---------- Lecture du Google Sheet ---------- */
-  // petit lecteur CSV (gère les guillemets et les retours à la ligne dans les cellules)
-  function parseCSV(text) {
-    const rows = []; let row = [], cell = "", q = false;
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-      if (q) {
-        if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; }
-        else if (ch === '"') q = false;
-        else cell += ch;
-      } else if (ch === '"') q = true;
-      else if (ch === ",") { row.push(cell); cell = ""; }
-      else if (ch === "\n" || ch === "\r") {
-        if (ch === "\r" && text[i + 1] === "\n") i++;
-        row.push(cell); rows.push(row); row = []; cell = "";
-      } else cell += ch;
-    }
-    if (cell || row.length) { row.push(cell); rows.push(row); }
-    return rows.filter(r => r.some(c => c.trim()));
-  }
-  const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  /* ---------- Lecture de l'onglet Événements ---------- */
   // "19/11/2026" ou "2026-11-19", et "18:00" ou "18:00:00"
   function toISO(d, t) {
     d = (d || "").trim(); t = (t || "").trim() || "18:00";
@@ -140,49 +36,26 @@ const TYPES = {
     if (/^\d{4}-\d{1,2}-\d{1,2}/.test(d)) [y, m, j] = d.split(/[-T ]/);
     else if (/^\d{1,2}\/\d{1,2}\/\d{4}/.test(d)) [j, m, y] = d.split(/[\/ ]/);
     else return null;
-    const [h = "18", mi = "00"] = t.split(":");
-    return `${y}-${pad(+m)}-${pad(+j)}T${pad(+h)}:${pad(+mi)}`;
-  }
-  // lien Google Drive de l'affiche → image affichable
-  function posterURL(v) {
-    v = (v || "").split(/[,\s]+/).find(Boolean) || "";
-    const id = (v.match(/[?&]id=([\w-]+)/) || v.match(/\/d\/([\w-]+)/) || [])[1];
-    return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w800` : v;
-  }
-  function fromSheet(text) {
-    const [head, ...rows] = parseCSV(text);
-    const H = head.map(norm);
-    const col = (...keys) => H.findIndex(h => keys.some(k => h.includes(k)));
-    const c = {
-      type: col("type"), titre: col("titre"), date: H.findIndex(h => h.startsWith("date")), heure: col("heure"),
-      lieu: col("lieu"), qui: col("intervenant"), lien: col("helloasso", "inscription"), affiche: col("affiche"),
-    };
-    const get = (r, i) => (i >= 0 ? (r[i] || "").trim() : "");
-    return rows.map(r => ({
-      type: get(r, c.type) || "Conférence",
-      titre: get(r, c.titre),
-      date: toISO(get(r, c.date), get(r, c.heure)),
-      lieu: get(r, c.lieu),
-      intervenants: get(r, c.qui),
-      inscription: get(r, c.lien),
-      affiche: posterURL(get(r, c.affiche)),
-    })).filter(e => e.titre && e.date);
+    const [h = "18", mi = "00"] = (t.match(/\d{1,2}[:h]\d{2}|\d{1,2}/) || ["18"])[0].split(/[:h]/);
+    return `${y}-${pad(+m)}-${pad(+j)}T${pad(+h)}:${pad(+mi || 0)}`;
   }
 
   let events = [];
   // Renvoie tous les événements, triés par date, avec { when, id, past }
   async function load() {
-    let list = EVENEMENTS;
-    if (SHEET_CSV) {
-      try {
-        const r = await fetch(SHEET_CSV + (SHEET_CSV.includes("?") ? "&" : "?") + "t=" + Date.now());
-        if (!r.ok) throw new Error(r.status);
-        const fromS = fromSheet(await r.text());
-        if (fromS.length) list = fromS;
-      } catch (err) {
-        console.warn("Sheet des événements indisponible, événements de secours utilisés.", err);
-      }
-    }
+    const { tab, get, yes, image } = CONTENU;
+    const list = (await tab("Événements")).map(r => ({
+      type: get(r, "type") || "Conférence",
+      titre: get(r, "titre"),
+      description: get(r, "description"),
+      date: toISO(get(r, "date"), get(r, "heure")),
+      lieu: get(r, "lieu"),
+      intervenants: get(r, "intervenant"),
+      inscription: get(r, "helloasso", "inscription"),
+      affiche: image(get(r, "affiche"), 800),
+      apres: get(r, "replay", "photos"),
+      une: yes(get(r, "a la une")),
+    })).filter(e => e.titre && e.date);
     const now = Date.now();
     events = list.map((e, i) => ({ ...e, id: i, when: new Date(e.date) }))
       .filter(e => !isNaN(e.when)).sort((a, b) => a.when - b.when)
@@ -204,6 +77,7 @@ const TYPES = {
           <span class="ev-type"><i></i>${esc(e.type)}</span>
           <h3>${esc(e.titre)}</h3>
           ${who(e) ? `<p class="ev-who">Avec ${esc(who(e))}</p>` : ""}
+          ${e.description ? `<div class="ev-desc">${CONTENU.paras(e.description)}</div>` : ""}
           <p>${esc(e.lieu)}</p>
         </div>
         <div class="ev-act">${e.inscription
@@ -223,7 +97,8 @@ const TYPES = {
         <div class="ev-card-img">${e.affiche ? `<img src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<svg viewBox="0 0 300 140" aria-hidden="true"><use href="#logo"/></svg></div>
         <span class="ev-card-d">${e.when.getDate()} ${MONTHS[e.when.getMonth()]} ${e.when.getFullYear()}</span>
         <h3>${esc(e.titre)}</h3>
-        ${e.intervenants ? `<p>Avec ${esc(e.intervenants)}</p>` : ""}
+        ${who(e) ? `<p>Avec ${esc(who(e))}</p>` : ""}
+        ${e.apres ? `<a class="ev-card-go" href="${esc(e.apres)}" target="_blank" rel="noopener">Replay et photos <span>→</span></a>` : ""}
       </article>`;
     }).join("")}</div>`;
   }

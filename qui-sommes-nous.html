@@ -24,7 +24,10 @@
   .member h3 { font-stretch: 108%; font-weight: 700; font-size: 18px; line-height: 1.2; }
   .member p { font-size: 14px; color: #4a4a58; }
   .partners { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-  .partners > div { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 22px; }
+  .partners > * { display: block; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 22px; text-decoration: none; color: inherit; transition: background .2s; }
+  .partners > a:hover { background: #f3f6ff; }
+  .partners .logo { height: 64px; margin-bottom: 16px; display: flex; align-items: center; }
+  .partners .logo img { max-height: 100%; max-width: 70%; object-fit: contain; }
   .partners h3 { font-stretch: 108%; font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--team); margin-bottom: 8px; }
   .partners p { font-size: 14px; color: #4a4a58; }
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); margin-top: 30px; }
@@ -47,7 +50,7 @@
     <div class="wrap">
       <a class="back" href="index.html">← Accueil</a>
       <h1 class="display">Qui sommes-<br>nous</h1>
-      <p class="lead">La tribune étudiante de Grenoble École de Management, depuis 2006. À Grenoble et à Pantin.</p>
+      <p class="lead" data-texte="qui-intro">La tribune étudiante de Grenoble École de Management, depuis 2006. À Grenoble et à Pantin.</p>
     </div>
     <svg class="art" viewBox="0 0 260 180" aria-hidden="true">
       <g stroke="#8fd0e8" stroke-width="4" fill="none"><path d="M30 40 L130 90 L230 30 M130 90 L80 160 M130 90 L210 150 M30 40 L80 160"/></g>
@@ -59,9 +62,11 @@
     <div class="wrap">
       <h2 class="display">Notre mission</h2>
       <div class="body">
-        <p class="big">On invite des personnalités qui font l'actualité. Et on laisse la salle leur répondre.</p>
+        <p class="big" data-texte="qui-accroche">On invite des personnalités qui font l'actualité. Et on laisse la salle leur répondre.</p>
+        <div data-texte="qui-mission">
         <p>GEM en Débat fait vivre le débat à Grenoble École de Management. On encourage les étudiants à élargir leurs horizons intellectuels, politiques et artistiques, à confronter leurs idées à celles des intervenants et des autres élèves, et à partager leurs lectures, leurs convictions et leurs réflexions, dans la bienveillance et le respect.</p>
         <p>Nos conférences sont gratuites et ouvertes à tous, à Grenoble comme à Pantin.</p>
+        </div>
         <div class="stats">
           <div><b>+40</b><span>événements en 2025-2026</span></div>
           <div><b>44</b><span>membres</span></div>
@@ -101,10 +106,7 @@
     <div class="wrap">
       <h2 class="display">Partenaires</h2>
       <div class="body">
-        <div class="partners">
-          <div><h3>CIC Lyonnaise de Banque</h3><p>Banque régionale du groupe CIC, ancrée dans le territoire, qui accompagne particuliers, professionnels et entreprises.</p></div>
-          <div><h3>Oresys</h3><p>Cabinet de conseil indépendant en transformation, organisation et systèmes d'information, en France et en Suisse.</p></div>
-          <div><h3>Grenoble École de Management</h3><p>Notre école, qui soutient la vie associative et nous accueille à Grenoble et à Pantin.</p></div>
+        <div class="partners" id="partners"></div>
         </div>
       </div>
     </div>
@@ -114,8 +116,8 @@
     <div class="wrap">
       <h2 class="display">Devenir partenaire</h2>
       <div class="body">
-        <p class="big">Soutenez l'art du débat.</p>
-        <p>En devenant partenaire, vous faites vivre des conférences de qualité, vous aidez à former les orateurs de demain et vous encouragez l'engagement intellectuel des étudiants. Entreprise, institution ou acteur engagé : votre soutien nous permet d'organiser des conférences, des débats et des concours d'éloquence toujours plus ambitieux.</p>
+        <p class="big" data-texte="partenaire-accroche">Soutenez l'art du débat.</p>
+        <p data-texte="partenaire-texte">En devenant partenaire, vous faites vivre des conférences de qualité, vous aidez à former les orateurs de demain et vous encouragez l'engagement intellectuel des étudiants. Entreprise, institution ou acteur engagé : votre soutien nous permet d'organiser des conférences, des débats et des concours d'éloquence toujours plus ambitieux.</p>
         <div class="contact">
           <a class="btn" href="https://s3.amazonaws.com/polo-content/1541274/818ed071fc1d4e169b04b0e47cca9021" target="_blank" rel="noopener">Télécharger notre plaquette <span>→</span></a>
           <a class="btn ghost" href="mailto:carla.bourne@grenoble-em.com">Écrire à Carla Bourne, responsable partenariats <span>→</span></a>
@@ -128,7 +130,7 @@
     <div class="wrap">
       <h2 class="display">Nous contacter</h2>
       <div class="body">
-        <p>Une idée d'invité, une question, envie de monter sur scène au TEDx ? Écrivez-nous ou suivez-nous.</p>
+        <p data-texte="contact-texte">Une idée d'invité, une question, envie de monter sur scène au TEDx ? Écrivez-nous ou suivez-nous.</p>
         <div class="contact">
           <a class="btn" href="mailto:charlotte.bena@grenoble-em.com">Écrire à la présidente <span>→</span></a>
           <a class="btn ghost" href="https://www.instagram.com/gemendebat/" target="_blank" rel="noopener">Instagram</a>
@@ -145,30 +147,35 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script>
-/* =========================================================
-   L'ÉQUIPE — un membre par ligne.
-   photo : lien d'une photo (facultatif), sinon les initiales s'affichent
-   ========================================================= */
-const EQUIPE = [
-  { nom: "Charlotte Bena", role: "Présidente", photo: "" },
-  { nom: "Carla Bourne", role: "Responsable partenariats", photo: "" },
-  { nom: "Valentin Wysocki", role: "Responsable conférences", photo: "" },
-  { nom: "Rémi Sourisseau", role: "Responsable rédaction", photo: "" },
-];
-
+// l'équipe et les partenaires viennent des onglets « Équipe » et « Partenaires » du Google Sheet
+const { get, image, esc } = CONTENU;
 const COLORS = [["#004bff", "#cfdcff"], ["#ebf155", "#4b5200"], ["#e62b1e", "#470803"], ["#7a1d4f", "#ffb3d1"], ["#003649", "#8fd0e8"]];
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const initials = n => n.split(/\s+/).map(w => w[0] || "").join("").slice(0, 2).toUpperCase();
-document.getElementById("team").innerHTML = EQUIPE.map((m, i) => {
-  const [bg, fg] = COLORS[i % COLORS.length];
-  return `
-  <div class="member">
-    <div class="av" style="background:${bg};color:${fg}">${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.nom)}" loading="lazy">` : esc(initials(m.nom))}</div>
-    <h3>${esc(m.nom)}</h3>
-    <p>${esc(m.role)}</p>
-  </div>`;
-}).join("");
+
+CONTENU.tab("Équipe").then(rows => {
+  document.getElementById("team").innerHTML = rows.filter(r => get(r, "nom")).map((r, i) => {
+    const [bg, fg] = COLORS[i % COLORS.length], nom = get(r, "nom"), photo = image(get(r, "photo"), 500);
+    return `
+    <div class="member">
+      <div class="av" style="background:${bg};color:${fg}">${photo ? `<img src="${esc(photo)}" alt="${esc(nom)}" loading="lazy" referrerpolicy="no-referrer">` : esc(initials(nom))}</div>
+      <h3>${esc(nom)}</h3>
+      <p>${esc(get(r, "role"))}</p>
+    </div>`;
+  }).join("");
+});
+
+CONTENU.tab("Partenaires").then(rows => {
+  document.getElementById("partners").innerHTML = rows.filter(r => get(r, "nom")).map(r => {
+    const nom = get(r, "nom"), logo = image(get(r, "logo"), 600), site = get(r, "site");
+    const inner = `
+      ${logo ? `<div class="logo"><img src="${esc(logo)}" alt="${esc(nom)}" loading="lazy" referrerpolicy="no-referrer"></div>` : ""}
+      <h3>${esc(nom)}</h3>
+      <p>${esc(get(r, "description"))}</p>`;
+    return site ? `<a href="${esc(site)}" target="_blank" rel="noopener">${inner}</a>` : `<div>${inner}</div>`;
+  }).join("");
+});
 </script>
 </body>
 </html>

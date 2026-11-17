@@ -27,7 +27,7 @@
     <div class="wrap">
       <a class="back" href="index.html">← Accueil</a>
       <h1 class="display">TED<span>x</span></h1>
-      <p class="lead">Le grand rendez-vous de fin d'année organisé par GEM en Débat : des speakers, des idées, une scène.</p>
+      <p class="lead" data-texte="tedx-intro">Le grand rendez-vous de fin d'année organisé par GEM en Débat : des speakers, des idées, une scène.</p>
     </div>
     <span class="art" aria-hidden="true">x</span>
   </section>
@@ -43,9 +43,10 @@
     <div class="wrap">
       <h2 class="display">C'est quoi, TEDx ?</h2>
       <div class="body">
+        <div data-texte="tedx-presentation">
         <p>TED, ce sont des conférences courtes autour d'« idées qui valent la peine d'être partagées ». Les événements TEDx sont organisés localement et de façon indépendante, sous licence TED.</p>
         <p>Chez GEM en Débat, le TEDx clôture l'année : plusieurs speakers se succèdent sur scène, chacun avec une idée à défendre.</p>
-        <span class="todo">Thème et détails de l'édition à compléter</span>
+        </div>
       </div>
     </div>
   </section>
@@ -74,6 +75,7 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script src="assets/events.js"></script>
 <script>
 GEM.load().then(events => {

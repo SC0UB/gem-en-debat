@@ -38,7 +38,7 @@
     <div class="wrap">
       <a class="back" href="index.html">← Accueil</a>
       <h1 class="display">Podcasts</h1>
-      <p class="lead">Des parcours inspirants et des invités qui font débat, en version longue, à écouter partout.</p>
+      <p class="lead" data-texte="podcasts-intro">Des parcours inspirants et des invités qui font débat, en version longue, à écouter partout.</p>
     </div>
     <span class="art" aria-hidden="true" id="wave"></span>
   </section>
@@ -72,6 +72,7 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script>
 document.getElementById("wave").innerHTML = [38, 72, 54, 92, 46, 80, 30, 64, 44, 70, 36].map((h, k) => `<i style="--h:${h}%;--k:${k}"></i>`).join("");
 </script>

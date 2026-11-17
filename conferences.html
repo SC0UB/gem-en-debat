@@ -29,7 +29,7 @@
     <div class="wrap">
       <a class="back" href="index.html">← Accueil</a>
       <h1 class="display">Conférences</h1>
-      <p class="lead">Des invités politiques, sportifs, entrepreneurs, personnalités publiques. Un sujet qui fait débat, et une large place aux questions de la salle. Gratuit et ouvert à tous.</p>
+      <p class="lead" data-texte="conferences-intro">Des invités politiques, sportifs, entrepreneurs, personnalités publiques. Un sujet qui fait débat, et une large place aux questions de la salle. Gratuit et ouvert à tous.</p>
     </div>
     <svg class="art" viewBox="0 0 400 300" aria-hidden="true">
       <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#cfdcff" stroke-width="12" stroke-linejoin="round" opacity=".9"/>
@@ -48,9 +48,11 @@
     <div class="wrap">
       <h2 class="display">Notre ADN</h2>
       <div class="body">
+        <div data-texte="conferences-adn">
         <p>La conférence est un espace d'échange et de réflexion : on y stimule le débat public à travers des conférences et des tables rondes, en donnant la parole à des experts, des professionnels et des personnalités inspirantes.</p>
         <p>Économie, développement durable, politique, entrepreneuriat, sport : nos invités sont chercheurs, chefs d'entreprise, journalistes, figures publiques ou acteurs du changement. Chaque conférence est pensée pour faire réfléchir et pour laisser la salle échanger avec eux.</p>
         <p>Chaque année, environ 14 conférences et plusieurs tables rondes, gratuites et ouvertes à tous : étudiants de GEM, Grenoblois et Pantinois.</p>
+        </div>
         <p style="margin-top:22px"><a class="btn" href="https://www.youtube.com/@gemendebat" target="_blank" rel="noopener">Revoir nos conférences sur YouTube <span>→</span></a></p>
       </div>
     </div>
@@ -80,6 +82,7 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script src="assets/events.js"></script>
 <script>
 GEM.load().then(events => {

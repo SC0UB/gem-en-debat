@@ -43,6 +43,8 @@
 
   .i-head { grid-column: 2 / span 3; grid-row: 2; padding: 30px 30px 30px 30px; position: relative; }
   .i-head h1 { font-size: clamp(34px, 4.6vw, 66px); max-width: 13ch; }
+  /* le bandeau d'annonce, en pastille au-dessus du titre */
+  .i-head .annonce { position: static; display: inline-flex; margin-bottom: 18px; padding: 8px 14px 7px; font-size: 14px; max-width: 100%; }
   .i-side { grid-column: 5; grid-row: 2; align-self: end; padding: 26px; font-size: 14px; font-weight: 600; display: grid; gap: 4px; position: relative; }
   .i-side .i-partner { margin-top: 10px; justify-self: start; text-decoration: none; border: 1px solid currentColor; padding: 6px 10px 5px; font-weight: 800; transition: background .15s, color .15s; }
   .i-side .i-partner:hover { background: var(--ink); color: #fff; }
@@ -206,7 +208,7 @@
     </nav>
   </div>
 
-  <div class="i-head"><h1 class="display">Les prochains rendez-vous de GEM en Débat.</h1></div>
+  <div class="i-head"><h1 class="display" data-texte="accueil-titre">Les prochains rendez-vous de GEM en Débat.</h1></div>
   <div class="i-side"><b>Saison <span id="season"></span></b><span>Gratuit · ouvert à tous</span><span>Inscription en un clic</span><a class="i-partner" href="qui-sommes-nous.html#partenaire">Devenir partenaire →</a></div>
 
   <!-- les événements sont ajoutés ici -->
@@ -237,7 +239,7 @@
 
   <a class="tile t-ted" href="tedx.html">
     <h2 class="display">TEDx</h2>
-    <p class="tag">Le grand rendez-vous de fin d'année, organisé par l'asso.</p>
+    <p class="tag" data-texte="accueil-tuile-tedx">Le grand rendez-vous de fin d'année, organisé par l'asso.</p>
     <span class="art" aria-hidden="true">x</span>
     <p class="desc">Découvrir le TEDx <span>→</span></p>
   </a>
@@ -248,7 +250,7 @@
 
   <a class="tile t-quinz" href="la-quinzaine.html">
     <h2 class="display">La Quinzaine</h2>
-    <p class="kicker">Le journal étudiant de GEM, chaque mois.</p>
+    <p class="kicker" data-texte="accueil-tuile-quinzaine">Le journal étudiant de GEM, chaque mois.</p>
     <span class="art" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
     <p class="desc">Lire les numéros <span>→</span></p>
   </a>
@@ -274,6 +276,7 @@
 <footer class="site-footer" data-site-footer></footer>
 
 <script src="assets/site.js"></script>
+<script src="assets/contenu.js"></script>
 <script src="assets/events.js"></script>
 <script>
 const $ = s => document.querySelector(s);
@@ -287,7 +290,8 @@ $("#lines").innerHTML = "<span></span>".repeat(30);
 function render(events) {
   const upcoming = events.filter(e => !e.past);
   document.querySelectorAll(".intro .ev").forEach(el => el.remove());
-  const shown = upcoming.slice(0, 4);
+  // d'abord les événements cochés « À la une », puis les suivants par date
+  const shown = [...upcoming.filter(e => e.une), ...upcoming.filter(e => !e.une)].slice(0, 4);
   const cells = shown.map((e, i) => {
     const [c, fg] = GEM.colors(e.type);
     const attrs = `style="grid-column:${i + 2};grid-row:3;--c:${c};--fg:${fg};animation-delay:${.1 + i * .08}s"`;
