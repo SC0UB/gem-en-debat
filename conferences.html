@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conférences — GEM en Débat</title>
+<meta name="description" content="Les conférences de GEM en Débat : des invités, un sujet qui fait débat, et la parole à la salle. Gratuit et ouvert à tous.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .p-hero .art { right: -7%; bottom: -26%; width: min(46vw, 640px); transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+  .p-hero:hover .art { transform: rotate(-4deg) translate(-2%, -3%); }
+  .p-hero .art circle { animation: dot 1.4s ease-in-out infinite; }
+  .p-hero .art circle:nth-of-type(2) { animation-delay: .2s; }
+  .p-hero .art circle:nth-of-type(3) { animation-delay: .4s; }
+  @keyframes dot { 30% { transform: translateY(-10px); } 60% { transform: none; } }
+  .p-hero .art circle { transform-box: fill-box; }
+</style>
+</head>
+<body style="--accent: var(--conf)">
+<header class="site-header" data-site-header></header>
+
+<main>
+  <section class="p-hero t-conf">
+    <div class="wrap">
+      <a class="back" href="index.html">← Accueil</a>
+      <h1 class="display">Conférences</h1>
+      <p class="lead">Des invités politiques, sportifs, entrepreneurs, personnalités publiques. Un sujet qui fait débat, et une large place aux questions de la salle. Gratuit et ouvert à tous.</p>
+    </div>
+    <svg class="art" viewBox="0 0 400 300" aria-hidden="true">
+      <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#cfdcff" stroke-width="12" stroke-linejoin="round" opacity=".9"/>
+      <circle cx="150" cy="124" r="13" fill="#cfdcff"/><circle cx="205" cy="122" r="13" fill="#cfdcff"/><circle cx="260" cy="120" r="13" fill="#cfdcff"/>
+    </svg>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">À venir</h2>
+      <div class="body" id="upcoming"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Notre ADN</h2>
+      <div class="body">
+        <p>La conférence est un espace d'échange et de réflexion : on y stimule le débat public à travers des conférences et des tables rondes, en donnant la parole à des experts, des professionnels et des personnalités inspirantes.</p>
+        <p>Économie, développement durable, politique, entrepreneuriat, sport : nos invités sont chercheurs, chefs d'entreprise, journalistes, figures publiques ou acteurs du changement. Chaque conférence est pensée pour faire réfléchir et pour laisser la salle échanger avec eux.</p>
+        <p>Chaque année, environ 14 conférences et plusieurs tables rondes, gratuites et ouvertes à tous : étudiants de GEM, Grenoblois et Pantinois.</p>
+        <p style="margin-top:22px"><a class="btn" href="https://www.youtube.com/@gemendebat" target="_blank" rel="noopener">Revoir nos conférences sur YouTube <span>→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Comment ça marche</h2>
+      <div class="body">
+        <div class="blocks">
+          <div><span class="n">1</span><h3>Inscrivez-vous</h3><p>En un clic sur HelloAsso, depuis ce site ou le QR code de l'affiche. C'est gratuit.</p></div>
+          <div><span class="n">2</span><h3>Venez à GEM</h3><p>À Grenoble École de Management, 12 rue Pierre Sémard, ou sur le campus de Pantin avec <a href="ged-paris.html">GED Paris</a>.</p></div>
+          <div><span class="n">3</span><h3>Prenez la parole</h3><p>Après l'intervention, la salle a le micro : questions, objections, réactions.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Déjà débattu</h2>
+      <div class="body" id="past"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/events.js"></script>
+<script>
+GEM.load().then(events => {
+  const confs = events.filter(e => e.type === "Conférence");
+  document.getElementById("upcoming").innerHTML = GEM.rows(confs.filter(e => !e.past), "Les prochaines conférences arrivent très bientôt.");
+  document.getElementById("past").innerHTML = GEM.cards(confs.filter(e => e.past).reverse());
+});
+</script>
+</body>
+</html>

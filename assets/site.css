@@ -1,0 +1,149 @@
+/* GEM en Débat — styles communs à toutes les pages */
+:root {
+  --white: #ffffff;
+  --ink: #16151d;
+  --blue: #004bff;
+  --line: #cdd9f7;
+  --soft: #7d97dd;
+  /* couleurs des univers (les tuiles de l'accueil) */
+  --conf: #004bff;  --conf-fg: #cfdcff;
+  --elo: #ebf155;   --elo-fg: #4b5200;
+  --ted: #e62b1e;   --ted-fg: #470803;
+  --pod: #7a1d4f;   --pod-fg: #ffb3d1;
+  --team: #003649;  --team-fg: #8fd0e8;
+  --quinz: #e6e6fa; --quinz-fg: #2b2280;
+  --paris: #16151d; --paris-fg: #f5f5f1;
+  --max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { background: var(--white); color: var(--ink); font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+img { display: block; max-width: 100%; }
+.display { font-stretch: 112%; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+
+/* ---------- Menu ---------- */
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.sh { max-width: var(--max); margin: 0 auto; padding: 12px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--blue); }
+.sh-logo { display: block; width: 86px; flex: none; color: var(--blue); }
+.sh-logo svg { display: block; width: 100%; height: auto; }
+.sh-nav { display: flex; gap: 6px; font-weight: 700; font-size: 14px; overflow-x: auto; scrollbar-width: none; }
+.sh-nav::-webkit-scrollbar { display: none; }
+.sh-nav a { text-decoration: none; padding: 8px 12px; white-space: nowrap; transition: background .15s; }
+.sh-nav a:hover { background: #eef3ff; }
+.sh-nav a[aria-current="page"] { background: var(--blue); color: #fff; }
+
+/* ---------- En-tête de page (couleur de l'univers) ---------- */
+.p-hero { position: relative; overflow: hidden; background: var(--bg); color: var(--fg); min-height: min(72vh, 640px); display: flex; align-items: flex-end; }
+.p-hero .wrap { position: relative; z-index: 1; width: 100%; padding-top: clamp(48px, 8vw, 96px); padding-bottom: clamp(36px, 5vw, 64px); }
+.p-hero .back { display: inline-block; margin-bottom: clamp(28px, 6vw, 80px); font-weight: 700; font-size: 14px; text-decoration: none; opacity: .85; }
+.p-hero .back:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.p-hero h1 { font-size: clamp(40px, 11vw, 168px); line-height: .92; letter-spacing: -0.045em; }
+.p-hero .lead { margin-top: 22px; font-size: clamp(18px, 1.7vw, 22px); font-weight: 600; max-width: 40ch; }
+.p-hero .art { position: absolute; z-index: 0; pointer-events: none; }
+.t-conf { --bg: var(--conf); --fg: var(--conf-fg); }
+.t-elo  { --bg: var(--elo);  --fg: var(--elo-fg); }
+.t-ted  { --bg: var(--ted);  --fg: var(--ted-fg); }
+.t-pod  { --bg: var(--pod);  --fg: var(--pod-fg); }
+.t-team { --bg: var(--team); --fg: var(--team-fg); }
+.t-quinz { --bg: var(--quinz); --fg: var(--quinz-fg); }
+.t-paris { --bg: var(--paris); --fg: var(--paris-fg); }
+/* la petite pastille de couleur de la page, reprise dans les titres de section */
+.sec h2::before { content: ""; display: inline-block; width: .5em; height: .5em; margin-right: .35em; background: var(--accent, var(--blue)); vertical-align: .08em; }
+
+/* ---------- Sections (colonne de titre + contenu, avec les fines lignes bleues) ---------- */
+.sec { border-bottom: 1px solid var(--line); }
+.sec .wrap { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; padding: 0; }
+.sec h2 { color: var(--blue); font-size: clamp(24px, 2.4vw, 32px); padding: clamp(24px, 3vw, 40px) var(--gutter); border-right: 1px solid var(--line); }
+.sec .body { padding: clamp(24px, 3vw, 40px) var(--gutter); min-width: 0; }
+.sec .body > p { font-size: 18px; font-weight: 500; max-width: 60ch; }
+.sec .body > p + p { margin-top: 14px; }
+.todo { display: inline-block; margin-top: 16px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); border: 1px dashed var(--soft); padding: 3px 8px; }
+
+/* blocs en grille (formats, étapes, épisodes, équipe) */
+.blocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.blocks > * { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px; }
+.blocks h3 { font-stretch: 108%; font-weight: 700; font-size: 21px; letter-spacing: -0.015em; line-height: 1.15; margin: 6px 0 8px; }
+.blocks p { font-size: 15px; color: #4a4a58; }
+.blocks .n { font-stretch: 112%; font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: -0.04em; color: var(--accent, var(--blue)); }
+a.block { text-decoration: none; transition: background .2s, color .2s; }
+a.block:hover { background: var(--c); color: var(--fg); }
+a.block:hover p { color: inherit; }
+a.block .go { display: inline-block; margin-top: 12px; font-weight: 800; font-size: 14px; }
+
+/* ---------- Boutons ---------- */
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: #fff; border: 0; font-weight: 800; font-size: 15px; padding: 13px 18px 12px; text-decoration: none; white-space: nowrap; transition: gap .2s, background .15s; }
+.btn:hover { gap: 16px; background: var(--ink); }
+.btn.off { background: transparent; color: var(--soft); border: 1px dashed var(--soft); pointer-events: none; }
+.btn.ghost { background: transparent; color: var(--blue); border: 1px solid var(--blue); }
+.btn.ghost:hover { background: var(--blue); color: #fff; }
+
+/* ---------- Liste d'événements ---------- */
+.ev-empty { font-size: 18px; font-weight: 600; color: var(--soft); }
+.ev-rows { list-style: none; border-top: 1px solid var(--line); }
+.ev-row { display: grid; grid-template-columns: 92px 120px 1fr auto; gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.ev-poster { position: relative; width: 92px; aspect-ratio: 1 / 1.414; background: var(--c); color: var(--fg); display: grid; place-items: center; overflow: hidden; }
+.ev-poster svg { width: 80%; }
+.ev-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ev-date b { display: block; font-stretch: 108%; font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.02em; color: var(--blue); }
+.ev-date span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); }
+.ev-type { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--blue); }
+.ev-type i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.ev-main h3 { font-stretch: 108%; font-weight: 700; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.15; letter-spacing: -0.02em; margin: 4px 0 6px; }
+.ev-main p { font-size: 15px; color: #4a4a58; }
+.ev-main .ev-who { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+
+.ev-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 28px 20px; }
+.ev-card-img { position: relative; aspect-ratio: 1 / 1.414; background: var(--c); color: var(--fg); display: grid; place-items: center; overflow: hidden; margin-bottom: 14px; }
+.ev-card-img svg { width: 62%; }
+.ev-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.ev-card:hover .ev-card-img img { transform: scale(1.04); }
+.ev-card-d { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); }
+.ev-card h3 { font-stretch: 108%; font-weight: 700; font-size: 19px; line-height: 1.15; letter-spacing: -0.015em; margin: 4px 0; }
+.ev-card p { font-size: 14px; color: #4a4a58; }
+
+/* ---------- Pied de page ---------- */
+.site-footer { display: grid; grid-template-columns: minmax(16px, 1fr) repeat(4, minmax(0, 300px)) minmax(16px, 1fr); color: var(--blue); border-top: 1px solid var(--line); }
+.site-footer > div { padding: 28px 24px 34px; border-right: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.site-footer > div:first-child { grid-column: 2; border-left: 1px solid var(--line); }
+.site-footer h6 { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; color: var(--soft); }
+.site-footer ul { list-style: none; }
+.site-footer a { text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ---------- Fenêtre d'inscription HelloAsso ---------- */
+dialog.reg { border: 0; background: #fff; color: var(--ink); width: min(640px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; margin: auto; box-shadow: 0 40px 100px -20px rgba(0,40,140,.45); }
+dialog.reg::backdrop { background: rgba(0,75,255,.18); backdrop-filter: blur(4px); }
+.reg .m-head { background: var(--blue); color: #fff; padding: 22px 26px; position: relative; }
+.reg .m-head small { font-size: 12px; font-weight: 700; opacity: .8; }
+.reg .m-head h3 { font-stretch: 112%; font-weight: 700; font-size: 26px; line-height: 1.05; letter-spacing: -0.02em; margin-top: 6px; padding-right: 40px; }
+.reg .m-when { font-weight: 600; font-size: 14px; margin-top: 8px; }
+.reg .close { position: absolute; top: 14px; right: 14px; background: none; border: 0; color: #fff; font-size: 30px; line-height: 1; width: 36px; height: 36px; }
+.reg .ha { position: relative; }
+.reg .ha iframe { display: block; width: 100%; height: min(600px, calc(100dvh - 230px)); border: 0; }
+.reg .ha .loading { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; color: var(--soft); pointer-events: none; transition: opacity .2s; }
+.reg .ha.ready .loading { opacity: 0; }
+.reg .m-foot { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; padding: 14px 26px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 700; color: var(--blue); }
+.reg .m-foot button { background: none; border: 0; font-weight: 700; color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Petits écrans ---------- */
+@media (max-width: 860px) {
+  .sh { flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 10px; padding-bottom: 8px; }
+  .sh-logo { width: 70px; }
+  .sh-nav { width: 100%; margin: 0 -12px; }
+  .p-hero { min-height: 0; }
+  .p-hero .wrap { padding-top: 36px; }
+  .p-hero .back { margin-bottom: 72px; }
+  .sec .wrap { grid-template-columns: 1fr; }
+  .sec h2 { border-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+  .ev-row { grid-template-columns: 72px 1fr; gap: 6px 18px; }
+  .ev-poster { width: 72px; grid-row: 1 / span 3; align-self: start; }
+  .ev-date b { font-size: 18px; }
+  .ev-act { grid-column: 2; margin-top: 8px; }
+  .site-footer { grid-template-columns: 1fr; }
+  .site-footer > div, .site-footer > div:first-child { grid-column: 1; border-left: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

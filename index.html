@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEM en Débat</title>
+<meta name="description" content="GEM en Débat — la tribune étudiante de Grenoble École de Management. Conférences, éloquence, TEDx, La Quinzaine, podcasts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  :root {
+    --white: #ffffff;
+    --ink: #16151d;
+    --blue: #004bff;
+    --line: #cdd9f7;
+    /* couleurs des tuiles */
+    --conf: #004bff;  --conf-fg: #cfdcff;
+    --elo: #ebf155;   --elo-fg: #4b5200;
+    --ted: #e62b1e;   --ted-fg: #470803;
+    --pod: #7a1d4f;   --pod-fg: #ffb3d1;
+    --team: #003649;  --team-fg: #8fd0e8;
+    --quinz: #e6e6fa; --quinz-fg: #2b2280;
+    --cols: minmax(16px, 1fr) repeat(4, minmax(0, 300px)) minmax(16px, 1fr);
+    --rows: 56px minmax(220px, 1fr) 300px 120px 56px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { background: var(--white); color: var(--ink); font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .display { font-stretch: 112%; font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+
+  /* ---------- Écran 1 : la grille et les prochains rendez-vous ---------- */
+  .intro { position: relative; min-height: 100svh; display: grid; grid-template-columns: var(--cols); grid-template-rows: var(--rows); color: var(--ink); }
+  .lines { position: absolute; inset: 0; display: grid; grid-template-columns: var(--cols); grid-template-rows: var(--rows); pointer-events: none; }
+  .lines span { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .lines span:nth-child(6n) { border-right: 0; }
+  .lines span:nth-last-child(-n+6) { border-bottom: 0; }
+
+  .i-head { grid-column: 2 / span 3; grid-row: 2; padding: 30px 30px 30px 30px; position: relative; }
+  .i-head h1 { font-size: clamp(34px, 4.6vw, 66px); max-width: 13ch; }
+  .i-side { grid-column: 5; grid-row: 2; align-self: end; padding: 26px; font-size: 14px; font-weight: 600; display: grid; gap: 4px; position: relative; }
+  .i-side .i-partner { margin-top: 10px; justify-self: start; text-decoration: none; border: 1px solid currentColor; padding: 6px 10px 5px; font-weight: 800; transition: background .15s, color .15s; }
+  .i-side .i-partner:hover { background: var(--ink); color: #fff; }
+  .i-side b { font-stretch: 112%; font-weight: 800; font-size: 15px; }
+  .i-top { grid-column: 2 / span 4; grid-row: 1; display: flex; justify-content: space-between; align-items: center; padding: 0 2px; font-size: 13px; font-weight: 700; position: relative; }
+  .i-top nav { display: flex; gap: 22px; }
+  .i-top a { text-decoration: none; }
+  .i-top a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .ev { position: relative; padding: 24px 24px 22px; height: 100%; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--ink); transition: background .25s, color .25s; opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .ev .type { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+  .ev .type i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); transition: background .25s; }
+  .ev .when { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .ev .when b { font-weight: 900; }
+  .ev h3 { font-stretch: 108%; font-weight: 700; font-size: clamp(22px, 1.9vw, 28px); line-height: 1.05; letter-spacing: -0.025em; margin-top: 4px; }
+  .ev .who { font-weight: 700; font-size: 15px; line-height: 1.25; }
+  .ev .go { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: var(--c); color: var(--fg); font-weight: 800; font-size: 14px; padding: 10px 14px 9px; white-space: nowrap; transition: gap .2s, background .25s, color .25s; }
+  .ev .go span { transition: transform .2s; }
+  .ev:hover .go { background: var(--fg); color: var(--c); }
+  .ev.soon .go { background: transparent; color: inherit; border: 1px dashed currentColor; }
+  .ev:hover { background: var(--c); color: var(--fg); }
+  .ev:hover .type i { background: var(--fg); }
+  .ev:hover .go span { transform: translateX(5px); }
+  .ev.soon .go { opacity: .7; }
+  .ev .pv { position: absolute; right: 18px; bottom: calc(100% - 40px); width: 150px; height: auto; z-index: 5; box-shadow: 0 24px 40px -18px rgba(0,30,120,.55); opacity: 0; transform: translateY(14px) rotate(4deg); transition: opacity .25s, transform .35s cubic-bezier(.2,.8,.2,1.3); pointer-events: none; }
+  .ev:hover .pv, .ev:focus-visible .pv { opacity: 1; transform: translateY(0) rotate(4deg); }
+  .ev.more { color: #8a8a96; justify-content: flex-end; font-weight: 700; font-size: 15px; animation-delay: .4s; }
+
+  .i-logo { grid-column: 2; grid-row: 4; align-self: end; padding: 24px; position: relative; }
+  .i-logo .mark { width: 92px; }
+  .i-down { grid-column: 5; grid-row: 4; align-self: end; justify-self: end; padding: 24px; font-weight: 700; font-size: 14px; text-decoration: none; position: relative; display: flex; align-items: center; gap: 10px; }
+  .i-down span { display: inline-block; animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateY(5px); } }
+
+  /* le logo (bulle GEM EN DEBAT) */
+  .mark { display: block; height: auto; }
+
+  /* ---------- Écran 2 : la mosaïque ---------- */
+  .mosaic {
+    display: grid; gap: 12px; padding: 12px; min-height: max(100svh, 780px);
+    grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(230px, 1fr));
+    grid-template-areas:
+      "conf conf elo  ted   ted"
+      "conf conf logo quinz quinz"
+      "conf conf pod  team  team";
+  }
+  .tile { position: relative; overflow: hidden; padding: clamp(20px, 2.2vw, 32px); text-decoration: none; background: var(--bg); color: var(--fg); display: flex; flex-direction: column; isolation: isolate; }
+  .tile h2 { font-size: clamp(30px, 3.2vw, 54px); position: relative; z-index: 1; }
+  .t-elo h2, .t-pod h2 { font-size: clamp(26px, 2.3vw, 40px); }
+  .tile .desc { position: relative; z-index: 1; margin-top: auto; max-width: 30ch; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(10px); transition: opacity .25s, transform .25s; }
+  .tile:hover .desc, .tile:focus-visible .desc { opacity: 1; transform: none; }
+  .tile .art { position: absolute; z-index: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .t-conf { grid-area: conf; --bg: var(--conf); --fg: var(--conf-fg); }
+  .t-elo  { grid-area: elo;  --bg: var(--elo);  --fg: var(--elo-fg); }
+  .t-ted  { grid-area: ted;  --bg: var(--ted);  --fg: var(--ted-fg); }
+  .t-pod  { grid-area: pod;  --bg: var(--pod);  --fg: var(--pod-fg); }
+  .t-team { grid-area: team; --bg: var(--team); --fg: var(--team-fg); }
+  .t-quinz { grid-area: quinz; --bg: var(--quinz); --fg: var(--quinz-fg); }
+  .t-logo { grid-area: logo; --bg: #111; --fg: #fff; display: grid; place-items: center; }
+  .t-logo .mark { width: 78%; max-width: 260px; transition: transform .5s cubic-bezier(.2,.8,.2,1.4); }
+  .t-logo:hover .mark { transform: rotate(-4deg) scale(1.06); }
+
+  /* Conférences : les prochaines dates + une grande bulle */
+  .t-conf .art { right: -6%; bottom: -8%; width: 72%; }
+  .t-conf:hover .art { transform: rotate(-6deg) translate(-2%, -3%); }
+  .t-conf .list { position: relative; z-index: 1; list-style: none; margin-top: 28px; max-width: 420px; }
+  .t-conf .list li { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 12px 0; border-top: 1.5px solid rgba(207,220,255,.35); font-weight: 600; font-size: 15px; line-height: 1.25; }
+  .t-conf .list li b { font-stretch: 112%; font-weight: 800; }
+  .t-conf .desc { opacity: 1; transform: none; }
+  /* Éloquence : les guillemets */
+  .t-elo .art { left: 8%; right: 8%; bottom: 10%; height: 52%; }
+  .t-elo:hover .art { transform: scale(1.08); }
+  /* TEDx */
+  .t-ted .art { right: 2%; bottom: -30%; font-stretch: 112%; font-weight: 900; font-size: clamp(220px, 26vw, 420px); line-height: 1; letter-spacing: -0.06em; color: var(--ted-fg); }
+  .t-ted:hover .art { transform: rotate(12deg) scale(1.05); }
+  .t-ted .tag { position: relative; z-index: 1; margin-top: 10px; font-weight: 700; font-size: 15px; max-width: 26ch; }
+  /* Podcasts : l'onde */
+  .t-pod .art { left: 10%; right: 10%; bottom: 14%; height: 44%; display: flex; align-items: center; gap: 6%; }
+  .t-pod .art i { flex: 1; background: var(--pod-fg); border-radius: 99px; height: var(--h); transition: height .3s; }
+  .t-pod:hover .art i { animation: wave .9s ease-in-out infinite alternate; animation-delay: calc(var(--k) * -.15s); }
+  @keyframes wave { to { height: calc(100% - var(--h) + 12%); } }
+  /* La Quinzaine : une une de journal */
+  .t-quinz .kicker { position: relative; z-index: 1; margin-top: 8px; font-weight: 700; font-size: 15px; max-width: 24ch; }
+  .t-quinz .art { right: 5%; top: 30%; bottom: 10%; width: 28%; display: grid; grid-template-columns: 1fr 1fr; gap: 8% 10%; align-content: start; transform: rotate(3deg); background: #fff; padding: 5%; box-shadow: 0 18px 30px -18px rgba(43,34,128,.5); }
+  .t-quinz .art b { grid-column: 1 / -1; height: 18%; min-height: 12px; background: var(--quinz-fg); }
+  .t-quinz .art i { height: 5px; background: #c9c6ef; border-radius: 2px; }
+  .t-quinz .art i:nth-of-type(3n) { width: 70%; }
+  .t-quinz:hover .art { transform: rotate(-2deg) translateY(-4%); }
+  /* Qui sommes-nous : le réseau */
+  .t-team .art { right: 4%; bottom: 8%; width: 46%; }
+  .t-team:hover .art { transform: translateX(-4%) rotate(-4deg); }
+
+  /* ---------- Animation au scroll (comme Dropbox) ---------- */
+  .anim .stage { height: 320vh; }
+  .anim .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .anim .pin { background: var(--white); }
+  .anim .intro { position: absolute; inset: 0; z-index: 2; min-height: 0; height: 100vh; background: var(--white); transform-origin: 50% 50%; will-change: transform, clip-path, opacity; }
+  .anim .mosaic { position: absolute; inset: 0; min-height: 0; height: 100vh; grid-template-rows: repeat(3, minmax(0, 1fr)); background: transparent; }
+  /* les fines lignes bleues au bord des carrés, comme sur Dropbox */
+  .grid-lines { display: none; }
+  .anim .grid-lines { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+  .grid-lines line { stroke: var(--line); stroke-width: 1; }
+  .anim .tile { z-index: 1; will-change: transform; }
+  .chip { display: none; }
+  .anim .chip { display: block; position: absolute; left: 0; top: 0; width: 100px; height: 100px; z-index: 3; background: #fff; transform-origin: 0 0; will-change: transform; pointer-events: none; }
+  .anim .fly { z-index: 4; }
+  .fly { display: none; }
+  .anim .fly { display: block; position: absolute; left: 0; top: 0; z-index: 3; height: auto; pointer-events: none; transform-origin: 0 0; will-change: transform; }
+  .anim .i-logo .mark { visibility: hidden; }
+
+  @media (prefers-reduced-motion: reduce) { .ev { animation: none; opacity: 1; transform: none; } .i-down span { animation: none; } }
+
+  @media (max-width: 1000px) {
+    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: minmax(220px, auto);
+      grid-template-areas: "conf conf" "logo elo" "ted ted" "quinz quinz" "pod team"; }
+    .t-conf { min-height: 520px; }
+    .t-ted { min-height: 320px; }
+  }
+  @media (max-width: 860px) {
+    .intro { display: block; min-height: 0; padding: 0 16px 24px; }
+    .lines { display: none; }
+    .i-top { padding: 18px 0; }
+    .i-top nav a:not(:last-child) { display: none; }
+    .i-head { padding: 28px 0 18px; border-top: 1px solid var(--line); }
+    .i-side { padding: 0 0 26px; }
+    .ev { border-top: 1px solid var(--line); height: auto; padding: 22px 6px; display: grid; grid-template-columns: 1fr auto; column-gap: 18px; row-gap: 8px; justify-items: start; }
+    .ev > :not(.pv) { grid-column: 1; }
+    .ev .go { margin-top: 6px; }
+    .ev .pv { position: static; grid-column: 2; grid-row: 1 / span 5; width: 64px; opacity: 1; transform: rotate(3deg); box-shadow: 0 10px 20px -12px rgba(0,30,120,.5); }
+    .ev.more { display: none; }
+    .i-logo, .i-down { display: none; }
+  }
+  @media (max-width: 560px) {
+    .mosaic { grid-template-columns: 1fr; grid-template-areas: "conf" "elo" "ted" "quinz" "pod" "team"; }
+    .t-logo { display: none; }
+    .tile .desc { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage"><div class="pin">
+<div class="chip" id="chip" aria-hidden="true"></div>
+<svg class="fly" id="fly" viewBox="0 0 300 140" aria-hidden="true"><use href="#logo"/></svg>
+
+<!-- ÉCRAN 1 : les prochains rendez-vous -->
+<header class="intro" id="agenda">
+  <div class="lines" aria-hidden="true" id="lines"></div>
+
+  <div class="i-top">
+    <span>GEM en Débat</span>
+    <nav aria-label="Navigation principale">
+      <a href="conferences.html">Conférences</a>
+      <a href="eloquence.html">Éloquence</a>
+      <a href="tedx.html">TEDx</a>
+      <a href="la-quinzaine.html">La Quinzaine</a>
+      <a href="podcasts.html">Podcasts</a>
+      <a href="ged-paris.html">GED Paris</a>
+      <a href="qui-sommes-nous.html">Qui sommes-nous</a>
+    </nav>
+  </div>
+
+  <div class="i-head"><h1 class="display">Les prochains rendez-vous de GEM en Débat.</h1></div>
+  <div class="i-side"><b>Saison <span id="season"></span></b><span>Gratuit · ouvert à tous</span><span>Inscription en un clic</span><a class="i-partner" href="qui-sommes-nous.html#partenaire">Devenir partenaire →</a></div>
+
+  <!-- les événements sont ajoutés ici -->
+
+  <div class="i-logo" style="color:var(--ink)"><svg class="mark" viewBox="0 0 300 140" role="img" aria-label="GEM en Débat"><use href="#logo"/></svg></div>
+  <a class="i-down" href="#univers">Découvrir l'asso <span>↓</span></a>
+</header>
+
+<!-- ÉCRAN 2 : la mosaïque -->
+<main class="mosaic" id="univers">
+  <a class="tile t-conf" href="conferences.html">
+    <h2 class="display">Conférences</h2>
+    <ul class="list" id="conf-list"></ul>
+    <p class="desc">Voir toutes les dates <span>→</span></p>
+    <svg class="art" viewBox="0 0 400 300" aria-hidden="true">
+      <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#cfdcff" stroke-width="14" stroke-linejoin="round" opacity=".9"/>
+      <circle cx="150" cy="124" r="13" fill="#cfdcff"/><circle cx="205" cy="122" r="13" fill="#cfdcff"/><circle cx="260" cy="120" r="13" fill="#cfdcff"/>
+    </svg>
+  </a>
+
+  <a class="tile t-elo" href="eloquence.html">
+    <h2 class="display">Éloquence</h2>
+    <svg class="art" viewBox="0 0 300 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path d="M20 128 C20 70 40 30 92 12 L100 30 C72 44 62 62 62 80 L100 80 L100 128 Z M130 128 C130 70 150 30 202 12 L210 30 C182 44 172 62 172 80 L210 80 L210 128 Z" fill="#4b5200"/>
+    </svg>
+    <p class="desc">Concours, ateliers, prise de parole <span>→</span></p>
+  </a>
+
+  <a class="tile t-ted" href="tedx.html">
+    <h2 class="display">TEDx</h2>
+    <p class="tag">Le grand rendez-vous de fin d'année, organisé par l'asso.</p>
+    <span class="art" aria-hidden="true">x</span>
+    <p class="desc">Découvrir le TEDx <span>→</span></p>
+  </a>
+
+  <div class="tile t-logo" aria-label="GEM en Débat">
+    <svg class="mark" viewBox="0 0 300 140" role="img" aria-label="Logo GEM en Débat"><use href="#logo"/></svg>
+  </div>
+
+  <a class="tile t-quinz" href="la-quinzaine.html">
+    <h2 class="display">La Quinzaine</h2>
+    <p class="kicker">Le journal étudiant de GEM, chaque mois.</p>
+    <span class="art" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <p class="desc">Lire les numéros <span>→</span></p>
+  </a>
+
+  <a class="tile t-pod" href="podcasts.html">
+    <h2 class="display">Podcasts</h2>
+    <span class="art" aria-hidden="true" id="wave"></span>
+    <p class="desc">Écouter <span>→</span></p>
+  </a>
+
+  <a class="tile t-team" href="qui-sommes-nous.html">
+    <h2 class="display">Qui sommes-<br>nous</h2>
+    <svg class="art" viewBox="0 0 260 180" aria-hidden="true">
+      <g stroke="#8fd0e8" stroke-width="4" fill="none"><path d="M30 40 L130 90 L230 30 M130 90 L80 160 M130 90 L210 150 M30 40 L80 160"/></g>
+      <g fill="#8fd0e8"><rect x="16" y="26" width="28" height="28" rx="8"/><rect x="116" y="76" width="28" height="28" rx="8"/><rect x="216" y="16" width="28" height="28" rx="8"/><rect x="66" y="146" width="28" height="28" rx="8"/><rect x="196" y="136" width="28" height="28" rx="8"/></g>
+    </svg>
+    <p class="desc">L'équipe, nos partenaires, devenir partenaire <span>→</span></p>
+  </a>
+</main>
+
+</div></div>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/events.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const { esc, pad, hour, MONTHS, DAYS } = GEM;
+const now = new Date();
+const sy = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1;
+$("#season").textContent = `${sy} — ${sy + 1}`;
+
+/* ---------- Écran 1 : les 4 prochains rendez-vous ---------- */
+$("#lines").innerHTML = "<span></span>".repeat(30);
+function render(events) {
+  const upcoming = events.filter(e => !e.past);
+  document.querySelectorAll(".intro .ev").forEach(el => el.remove());
+  const shown = upcoming.slice(0, 4);
+  const cells = shown.map((e, i) => {
+    const [c, fg] = GEM.colors(e.type);
+    const attrs = `style="grid-column:${i + 2};grid-row:3;--c:${c};--fg:${fg};animation-delay:${.1 + i * .08}s"`;
+    const inner = `
+      ${e.affiche ? `<img class="pv" src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}
+      <span class="type"><i></i>${esc(e.type)}</span>
+      <h3>${esc(e.titre)}</h3>
+      ${GEM.who(e) ? `<span class="who">Avec ${esc(GEM.who(e))}</span>` : ""}
+      <span class="when"><b>${GEM.day(e.when)}</b> · ${DAYS[e.when.getDay()]} · ${hour(e.when)}</span>
+      <span class="go">${e.inscription ? `S'inscrire gratuitement <span>→</span>` : "Inscriptions bientôt"}</span>`;
+    return e.inscription
+      ? `<a class="ev" href="${esc(e.inscription)}" data-reg="${e.id}" ${attrs}>${inner}</a>`
+      : `<div class="ev soon" ${attrs}>${inner}</div>`;
+  });
+  if (shown.length < 4) cells.push(`<div class="ev more" style="grid-column:${shown.length + 2};grid-row:3">${shown.length ? "D'autres dates arrivent bientôt." : "Les prochaines dates arrivent très bientôt."}</div>`);
+  $("#lines").insertAdjacentHTML("afterend", cells.join(""));
+
+  /* Écran 2 : les 5 prochaines conférences dans la grande tuile */
+  const confs = upcoming.filter(e => e.type === "Conférence").slice(0, 5);
+  $("#conf-list").innerHTML = confs.map(e => `<li><b>${e.when.getDate()} ${MONTHS[e.when.getMonth()]}</b><span>${esc(e.titre)}</span></li>`).join("");
+}
+GEM.load().then(render);
+$("#wave").innerHTML = [38, 72, 54, 92, 46, 80, 30, 64, 44].map((h, k) => `<i style="--h:${h}%;--k:${k}"></i>`).join("");
+
+/* ---------- Transition au scroll ----------
+   L'accueil blanc s'efface vite. Le carré du logo (en bas à gauche) se détache,
+   devient noir et glisse au centre pour devenir la pièce centrale,
+   pendant que les autres carrés viennent le rejoindre sur les fines lignes bleues. */
+(() => {
+  const big = matchMedia("(min-width: 1001px) and (min-height: 620px)");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)");
+  const stage = $("#stage"), intro = $("#agenda"), mosaic = $("#univers");
+  const tiles = [...mosaic.querySelectorAll(".tile")].filter(t => !t.classList.contains("t-logo"));
+  const logoTile = $(".t-logo"), chip = $("#chip"), fly = $("#fly"), homeMark = $(".i-logo .mark"), tileMark = $(".t-logo .mark");
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const NS = "http://www.w3.org/2000/svg";
+  let on = false, cur = 0, raf = 0, M = null;
+
+  // positions de départ (accueil) et d'arrivée (mosaïque terminée)
+  const measure = () => {
+    intro.style.transform = "none";
+    tiles.forEach(t => t.style.transform = "none");
+    const W = innerWidth, H = innerHeight;
+    const L = logoTile.getBoundingClientRect();
+    const c = { x: L.left + L.width / 2, y: L.top + L.height / 2 };
+    // les fines lignes bleues, au bord de chaque carré, prolongées sur toute la page
+    const R = mosaic.getBoundingClientRect(), xs = new Set(), ys = new Set();
+    [...tiles, logoTile].forEach(t => { const r = t.getBoundingClientRect(); xs.add(r.left - R.left); xs.add(r.right - R.left); ys.add(r.top - R.top); ys.add(r.bottom - R.top); });
+    let svg = mosaic.querySelector(".grid-lines");
+    if (!svg) { svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "grid-lines"); svg.setAttribute("aria-hidden", "true"); mosaic.prepend(svg); }
+    svg.innerHTML = [...xs].map(x => `<line x1="${x}" y1="${-H}" x2="${x}" y2="${H * 2}"/>`).join("") + [...ys].map(y => `<line x1="${-W}" y1="${y}" x2="${W * 2}" y2="${y}"/>`).join("");
+    // la case de l'accueil qui contient le logo (colonne 2, ligne 4 de la grille)
+    const cell = $("#lines").children[3 * 6 + 1].getBoundingClientRect();
+    const a = homeMark.getBoundingClientRect(), b = tileMark.getBoundingClientRect();
+    M = {
+      c,
+      from: { x: cell.left, y: cell.top, w: cell.width, h: cell.height },
+      to: { x: L.left, y: L.top, w: L.width, h: L.height },
+      t: tiles.map(t => { const r = t.getBoundingClientRect(); return { dx: r.left + r.width / 2 - c.x, dy: r.top + r.height / 2 - c.y }; }),
+      home: { x: a.left, y: a.top, w: a.width },
+      mark: { x: b.left, y: b.top, w: b.width },
+    };
+    fly.style.width = M.home.w + "px";
+  };
+  const target = () => clamp(-stage.getBoundingClientRect().top / (stage.offsetHeight - innerHeight));
+
+  const paint = p => {
+    const { from, to, home, mark } = M;
+
+    // l'accueil blanc s'efface vite
+    const io = 1 - clamp(p / .2);
+    intro.style.opacity = io;
+    intro.style.transform = `scale(${lerp(.96, 1, io)})`;
+    intro.style.visibility = io <= 0 ? "hidden" : "";
+    intro.style.pointerEvents = p > .01 ? "none" : "";
+
+    // le carré du logo se détache, devient noir et glisse au centre
+    const d = ease(clamp(p / .62));
+    const x = lerp(from.x, to.x, d), y = lerp(from.y, to.y, d), w = lerp(from.w, to.w, d), h = lerp(from.h, to.h, d);
+    chip.style.transform = `translate(${x}px, ${y}px) scale(${w / 100}, ${h / 100})`;
+    const dark = clamp(p / .12), g = Math.round(lerp(255, 17, dark));
+    chip.style.background = `rgb(${g},${g},${g})`;
+    chip.style.boxShadow = `0 ${30 * Math.sin(Math.PI * d)}px ${60 * Math.sin(Math.PI * d)}px -20px rgba(0,0,0,.45)`;
+
+    // le logo voyage avec lui et passe du bleu au blanc
+    const fx = lerp(home.x, mark.x, d), fy = lerp(home.y, mark.y, d), fw = lerp(home.w, mark.w, d);
+    fly.style.transform = `translate(${fx}px, ${fy}px) scale(${fw / home.w})`;
+    const ink = Math.round(lerp(22, 255, dark));
+    fly.style.color = `rgb(${ink}, ${ink}, ${ink})`;
+
+    // les autres carrés viennent le rejoindre
+    const k = 1 - ease(clamp((p - .22) / .74));   // ils partent une fois l'accueil effacé
+    tiles.forEach((t, i) => {
+      const { dx, dy } = M.t[i];
+      t.style.transform = `translate(${dx * 1.7 * k}px, ${dy * 1.7 * k}px) scale(${1 + .8 * k})`;
+    });
+
+    // une fois posé, le vrai carré central prend le relais
+    const landed = d > .999;
+    chip.style.opacity = fly.style.opacity = landed ? 0 : 1;
+    logoTile.style.visibility = landed ? "" : "hidden";
+    tileMark.style.opacity = landed ? 1 : 0;
+  };
+  const loop = () => {
+    const t = target();
+    cur += (t - cur) * .14;            // léger retard, pour un mouvement fluide
+    if (Math.abs(t - cur) < .0005) cur = t;
+    paint(cur);
+    raf = cur === t ? 0 : requestAnimationFrame(loop);
+  };
+  const kick = () => { if (on && !raf) raf = requestAnimationFrame(loop); };
+  const setup = () => {
+    const want = big.matches && !calm.matches;
+    if (want !== on) {
+      on = want;
+      document.documentElement.classList.toggle("anim", on);
+      if (!on) { intro.removeAttribute("style"); tiles.forEach(t => t.style.transform = ""); tileMark.style.opacity = ""; logoTile.style.visibility = ""; }
+    }
+    if (on) { measure(); cur = target(); paint(cur); }
+  };
+  addEventListener("scroll", kick, { passive: true });
+  addEventListener("resize", setup);
+  big.addEventListener("change", setup); calm.addEventListener("change", setup);
+  document.fonts.ready.then(setup);
+  setup();
+
+  // « Découvrir l'asso » descend jusqu'à la mosaïque terminée
+  document.addEventListener("click", e => {
+    const l = e.target.closest('a[href="#univers"]');
+    if (!l || !on) return;
+    e.preventDefault();
+    scrollTo({ top: stage.offsetTop + stage.offsetHeight - innerHeight, behavior: "smooth" });
+  });
+})();
+
+</script>
+</body>
+</html>

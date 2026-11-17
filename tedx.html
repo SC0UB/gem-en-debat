@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEDx — GEM en Débat</title>
+<meta name="description" content="Le TEDx organisé par GEM en Débat : le grand rendez-vous de fin d'année, des speakers et des idées.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .p-hero .art { right: -2%; bottom: -34%; font-stretch: 112%; font-weight: 900; font-size: min(62vw, 820px); line-height: 1; letter-spacing: -0.06em; color: var(--ted-fg); transition: transform 1s cubic-bezier(.2,.8,.2,1); }
+  .p-hero:hover .art { transform: rotate(10deg); }
+  .p-hero h1 span { color: #fff; }
+  .blocks a.block { --c: var(--ted); --fg: #fff; }
+  .note { margin-top: 16px; font-size: 14px; color: #6b6b78; max-width: 60ch; }
+</style>
+</head>
+<body style="--accent: var(--ted)">
+<header class="site-header" data-site-header></header>
+
+<main>
+  <section class="p-hero t-ted">
+    <div class="wrap">
+      <a class="back" href="index.html">← Accueil</a>
+      <h1 class="display">TED<span>x</span></h1>
+      <p class="lead">Le grand rendez-vous de fin d'année organisé par GEM en Débat : des speakers, des idées, une scène.</p>
+    </div>
+    <span class="art" aria-hidden="true">x</span>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Prochaine édition</h2>
+      <div class="body" id="upcoming"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">C'est quoi, TEDx ?</h2>
+      <div class="body">
+        <p>TED, ce sont des conférences courtes autour d'« idées qui valent la peine d'être partagées ». Les événements TEDx sont organisés localement et de façon indépendante, sous licence TED.</p>
+        <p>Chez GEM en Débat, le TEDx clôture l'année : plusieurs speakers se succèdent sur scène, chacun avec une idée à défendre.</p>
+        <span class="todo">Thème et détails de l'édition à compléter</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Participer</h2>
+      <div class="body">
+        <div class="blocks">
+          <a class="block" href="qui-sommes-nous.html#contact"><h3>Devenir speaker</h3><p>Vous avez une idée, une histoire, un parcours à partager ? Proposez-nous votre talk.</p><span class="go">Nous écrire →</span></a>
+          <a class="block" href="qui-sommes-nous.html#contact"><h3>Rejoindre l'équipe</h3><p>Organisation, technique, communication, accueil : le TEDx se monte avec des bénévoles.</p><span class="go">Nous écrire →</span></a>
+          <a class="block" href="qui-sommes-nous.html#contact"><h3>Devenir partenaire</h3><p>Soutenir l'événement et associer votre structure à un rendez-vous étudiant.</p><span class="go">Nous écrire →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Éditions passées</h2>
+      <div class="body" id="past"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/events.js"></script>
+<script>
+GEM.load().then(events => {
+  const list = events.filter(e => e.type === "TEDx");
+  document.getElementById("upcoming").innerHTML = GEM.rows(list.filter(e => !e.past), "La date de la prochaine édition sera annoncée très bientôt.");
+  document.getElementById("past").innerHTML = GEM.cards(list.filter(e => e.past).reverse(), "Les éditions précédentes apparaîtront ici.");
+});
+</script>
+</body>
+</html>

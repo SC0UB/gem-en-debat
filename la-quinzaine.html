@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Quinzaine — GEM en Débat</title>
+<meta name="description" content="La Quinzaine, le journal étudiant de GEM en Débat : chaque mois, 300 à 500 exemplaires distribués à Grenoble École de Management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .p-hero .art { right: 5%; top: 12%; width: min(26vw, 340px); aspect-ratio: 3 / 4; background: #fff; padding: 4%; display: grid; grid-template-columns: 1fr 1fr; gap: 6% 8%; align-content: start; transform: rotate(4deg); box-shadow: 0 30px 50px -28px rgba(43,34,128,.55); animation: sway 4s ease-in-out infinite; }
+  .p-hero .art b { grid-column: 1 / -1; height: 42px; background: var(--quinz-fg); }
+  .p-hero .art i { height: 7px; background: #c9c6ef; border-radius: 2px; }
+  .p-hero .art i:nth-of-type(3n) { width: 70%; }
+  @keyframes sway { 50% { transform: rotate(1deg) translateY(-8px); } }
+  .issues { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 40%), 1fr)); gap: 28px 20px; }
+  .issue a { display: block; text-decoration: none; }
+  .issue .cover { aspect-ratio: 3 / 4; background: var(--quinz); display: grid; place-items: center; overflow: hidden; margin-bottom: 12px; transition: transform .25s; }
+  .issue .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .issue .cover span { font-stretch: 112%; font-weight: 800; font-size: 64px; letter-spacing: -0.05em; color: var(--quinz-fg); }
+  .issue a:hover .cover { transform: rotate(-2deg) translateY(-4px); }
+  .issue h3 { font-stretch: 108%; font-weight: 700; font-size: 18px; line-height: 1.2; }
+  .issue p { font-size: 14px; color: #4a4a58; }
+  @media (max-width: 860px) { .p-hero .art { opacity: .45; width: 46vw; right: -6%; } }
+</style>
+</head>
+<body style="--accent: var(--quinz-fg)">
+<header class="site-header" data-site-header></header>
+
+<main>
+  <section class="p-hero t-quinz">
+    <div class="wrap">
+      <a class="back" href="index.html">← Accueil</a>
+      <h1 class="display">La<br>Quinzaine</h1>
+      <p class="lead">Le journal de GEM en Débat. Chaque mois, 300 à 500 exemplaires, devenus une vraie institution à l'école.</p>
+    </div>
+    <span class="art" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Les numéros</h2>
+      <div class="body">
+        <ul class="issues" id="issues"></ul>
+        <span class="todo">Numéros d'exemple à remplacer</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">La rédaction</h2>
+      <div class="body">
+        <p>La Quinzaine est écrite par le pôle Rédaction, en toute liberté éditoriale. Chaque mois, des sujets variés et surprenants : la montagne, les gangsters, la ville de Grenoble… sans perdre de vue l'actualité et la vie étudiante.</p>
+        <p>Recherche d'idées, écriture, relecture, mise en page : le journal vise un résultat professionnel et prépare ses rédacteurs au monde du journalisme.</p>
+        <p>Pour ses lecteurs, c'est une pause stimulante pour découvrir de nouveaux sujets, tout en restant connecté à la vie de GEM. La Quinzaine est réservée aux étudiants de GEM.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="assets/site.js"></script>
+<script>
+/* =========================================================
+   LES NUMÉROS — ajouter les nouveaux numéros en haut de la liste.
+   lien : lien du PDF ou de la page du numéro
+   couverture : lien d'une image de la une (facultatif)
+   ========================================================= */
+const NUMEROS = [
+  // ↓ EXEMPLES À REMPLACER
+  { numero: 3, titre: "Titre du numéro", date: "Novembre 2026", lien: "#", couverture: "" },
+  { numero: 2, titre: "Titre du numéro", date: "Octobre 2026", lien: "#", couverture: "" },
+  { numero: 1, titre: "Titre du numéro", date: "Octobre 2026", lien: "#", couverture: "" },
+];
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+document.getElementById("issues").innerHTML = NUMEROS.map(n => `
+  <li class="issue">
+    <a href="${esc(n.lien)}" target="_blank" rel="noopener">
+      <div class="cover">${n.couverture ? `<img src="${esc(n.couverture)}" alt="La Quinzaine n°${esc(n.numero)}" loading="lazy">` : `<span>n°${esc(n.numero)}</span>`}</div>
+      <h3>${esc(n.titre)}</h3>
+      <p>N°${esc(n.numero)} · ${esc(n.date)}</p>
+    </a>
+  </li>`).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éloquence — GEM en Débat</title>
+<meta name="description" content="L'éloquence chez GEM en Débat : apprendre à prendre la parole, défendre une idée, convaincre une salle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .p-hero .art { right: 4%; top: 10%; width: min(30vw, 420px); }
+  .p-hero .art path { transform-box: fill-box; transform-origin: center; animation: breathe 3.2s ease-in-out infinite; }
+  .p-hero .art path + path { animation-delay: .4s; }
+  @keyframes breathe { 50% { transform: scale(1.06) rotate(-2deg); } }
+  .blocks .tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--elo-fg); background: var(--elo); padding: 3px 8px; }
+  @media (max-width: 860px) { .p-hero .art { top: 10%; right: -4%; width: 46vw; opacity: .5; } }
+</style>
+</head>
+<body style="--accent: #b7bd1f">
+<header class="site-header" data-site-header></header>
+
+<main>
+  <section class="p-hero t-elo">
+    <div class="wrap">
+      <a class="back" href="index.html">← Accueil</a>
+      <h1 class="display">Éloquence</h1>
+      <p class="lead">Plus qu'un exercice de style : un art, une discipline et un défi permanent. Convaincre, émouvoir, captiver une salle, ça se travaille avec nous.</p>
+    </div>
+    <svg class="art" viewBox="0 0 230 140" aria-hidden="true">
+      <path d="M20 128 C20 70 40 30 92 12 L100 30 C72 44 62 62 62 80 L100 80 L100 128 Z" fill="#4b5200"/>
+      <path d="M130 128 C130 70 150 30 202 12 L210 30 C182 44 172 62 172 80 L210 80 L210 128 Z" fill="#4b5200"/>
+    </svg>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">L'éloquence chez nous</h2>
+      <div class="body">
+        <p>Nos membres développent leur aisance à l'oral, leur argumentation et leur répartie grâce à des entraînements réguliers, des simulations de joutes oratoires et des formats variés, du plaidoyer au discours libre.</p>
+        <p>Pour nous, la prise de parole est une compétence essentielle, à l'école comme dans la vie professionnelle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Ce qu'on fait</h2>
+      <div class="body">
+        <div class="blocks">
+          <div><span class="tag">Entraînement</span><h3>Entraînements et joutes</h3><p>Des séances régulières pour travailler l'argumentation, la rhétorique et l'improvisation, avec des simulations de joutes oratoires.</p></div>
+          <div><span class="tag">Compétition</span><h3>Les concours de la FFD</h3><p>Nous représentons GEM aux tournois de la Fédération Francophone de Débat (FFD) et de la FFD Auvergne-Rhône-Alpes, face aux meilleurs orateurs étudiants.</p></div>
+          <div><span class="tag">Concours</span><h3>Le Concours Berriat</h3><p>Chaque année au printemps, à GEM Grenoble : notre tournoi régional d'éloquence, ouvert aux étudiants de toute la région, devant un jury et un public.</p></div>
+        </div>
+        <p style="margin-top:22px">À Paris, l'éloquence se pratique aussi avec <a href="ged-paris.html">GED Paris</a> et le concours Jean Lolive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="display">Prochains rendez-vous</h2>
+      <div class="body" id="upcoming"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="past-sec" hidden>
+    <div class="wrap">
+      <h2 class="display">Déjà passés</h2>
+      <div class="body" id="past"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/events.js"></script>
+<script>
+GEM.load().then(events => {
+  const list = events.filter(e => e.type === "Éloquence");
+  const past = list.filter(e => e.past).reverse();
+  document.getElementById("upcoming").innerHTML = GEM.rows(list.filter(e => !e.past), "Les prochains rendez-vous éloquence arrivent bientôt.");
+  if (past.length) {
+    document.getElementById("past").innerHTML = GEM.cards(past);
+    document.getElementById("past-sec").hidden = false;
+  }
+});
+</script>
+</body>
+</html>
