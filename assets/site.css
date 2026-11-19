@@ -172,3 +172,13 @@ a.annonce:hover b span { transform: translateX(4px); }
 .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
 .gallery a:hover img { transform: scale(1.04); }
 .gallery figcaption { margin-top: 8px; font-size: 14px; font-weight: 600; color: #4a4a58; }
+
+/* ---------- Image en haut de page (onglet Textes, clé « …-image-haut ») ----------
+   la photo remplit le haut de page, la couleur de la page reste en dégradé à gauche pour que le texte se lise */
+.p-hero.has-image { background: var(--bg) var(--img) center / cover no-repeat; }
+.p-hero.has-image::before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 80%, transparent) 38%, color-mix(in srgb, var(--bg) 15%, transparent) 75%, transparent 100%); }
+.p-hero.has-image .art { display: none; }
+@media (max-width: 860px) {
+  .p-hero.has-image::before { background: linear-gradient(0deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 75%, transparent) 55%, color-mix(in srgb, var(--bg) 20%, transparent) 100%); }
+}

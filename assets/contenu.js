@@ -91,12 +91,17 @@ const SHEET_ID = "1THPYbx_VVEasc8qlWT7rW4HWj_nZ177tpstfyT_K0Q4";
   const paras = t => t.split(/\n\s*\n/).map(p => `<p>${lines(p.trim())}</p>`).join("");
 
   /* ---------- Les textes des pages (onglet Textes) ---------- */
-  const marked = document.querySelectorAll("[data-texte]"), linked = document.querySelectorAll("[data-lien]");
+  const marked = document.querySelectorAll("[data-texte]"), linked = document.querySelectorAll("[data-lien], [data-image]");
   if (marked.length || linked.length) tab("Textes").then(rows => {
     const T = Object.fromEntries(rows.map(r => [get(r, "cle"), get(r, "texte")]));
     marked.forEach(el => {
       const v = T[el.dataset.texte];
       if (v) el.innerHTML = el.tagName === "DIV" ? paras(v) : lines(v);
+    });
+    // l'image du haut de chaque page (à la place du fond de couleur)
+    document.querySelectorAll("[data-image]").forEach(el => {
+      const v = image(T[el.dataset.image] || "", 2000);
+      if (v) { el.style.setProperty("--img", `url("${new URL(v, location.href).href.replace(/"/g, "%22")}")`); el.classList.add("has-image"); }
     });
     // les liens des boutons (une adresse e-mail seule devient un lien « écrire à »)
     linked.forEach(el => {
