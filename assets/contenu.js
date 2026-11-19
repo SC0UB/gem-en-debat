@@ -59,12 +59,14 @@ const SHEET_ID = "1THPYbx_VVEasc8qlWT7rW4HWj_nZ177tpstfyT_K0Q4";
           console.warn(`Onglet « ${name} » du Sheet indisponible, copie de secours utilisée.`, err);
         }
       }
-      if (!rows) {
-        const r = await fetch(`contenu/${ONGLETS[name]}.csv`);
-        rows = r.ok ? table(await r.text()) : [];
-      }
-      return rows.filter(row => !yes(get(row, "masquer")));
+      return (rows || await copie(name)).filter(row => !yes(get(row, "masquer")));
     })().catch(err => { console.warn(err); return []; });
+  }
+  // la copie de secours d'un onglet, dans le dossier contenu/
+  const copies = {};
+  function copie(name) {
+    return copies[name] ??= fetch(`contenu/${ONGLETS[name]}.csv`)
+      .then(async r => r.ok ? table(await r.text()) : []).catch(() => []);
   }
 
   // valeur de la colonne nommée key (nom exact d'abord, puis qui commence par, puis qui contient)
@@ -92,8 +94,9 @@ const SHEET_ID = "1THPYbx_VVEasc8qlWT7rW4HWj_nZ177tpstfyT_K0Q4";
 
   /* ---------- Les textes des pages (onglet Textes) ---------- */
   const marked = document.querySelectorAll("[data-texte]"), linked = document.querySelectorAll("[data-lien], [data-image]");
-  if (marked.length || linked.length) tab("Textes").then(rows => {
-    const T = Object.fromEntries(rows.map(r => [get(r, "cle"), get(r, "texte")]));
+  // une clé absente du Sheet (par exemple ajoutée au site depuis) garde la valeur de la copie de secours
+  if (marked.length || linked.length) Promise.all([copie("Textes"), tab("Textes")]).then(([base, rows]) => {
+    const T = Object.fromEntries([...base, ...rows].map(r => [get(r, "cle"), get(r, "texte")]));
     marked.forEach(el => {
       const v = T[el.dataset.texte];
       if (v) el.innerHTML = el.tagName === "DIV" ? paras(v) : lines(v);
