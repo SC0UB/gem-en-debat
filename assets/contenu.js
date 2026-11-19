@@ -126,7 +126,7 @@ const SHEET_ID = "1THPYbx_VVEasc8qlWT7rW4HWj_nZ177tpstfyT_K0Q4";
       if (!mine.length) return;
       sec.querySelector(".gallery").innerHTML = mine.map(r => {
         const src = image(get(r, "photo"), 1400), cap = get(r, "legende");
-        return `<figure><a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy" referrerpolicy="no-referrer"></a>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
+        return `<figure><a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"></a>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
       }).join("");
       sec.hidden = false;
     });

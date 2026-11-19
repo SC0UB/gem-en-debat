@@ -82,7 +82,7 @@ CONTENU.tab("Quinzaine").then(rows => {
   document.getElementById("issues").innerHTML = list.length ? list.map(r => {
     const n = get(r, "numero"), titre = get(r, "titre"), cover = image(get(r, "couverture"), 600), lien = get(r, "pdf", "lien");
     const inner = `
-      <div class="cover">${cover ? `<img src="${esc(cover)}" alt="La Quinzaine n°${esc(n)}" loading="lazy" referrerpolicy="no-referrer">` : `<span>n°${esc(n)}</span>`}</div>
+      <div class="cover">${cover ? `<img src="${esc(cover)}" alt="La Quinzaine n°${esc(n)}" data-n="${esc(n)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<span>n°'+this.dataset.n+'</span>'">` : `<span>n°${esc(n)}</span>`}</div>
       <h3>${esc(titre)}</h3>
       <p>${[n && `N°${esc(n)}`, esc(get(r, "date"))].filter(Boolean).join(" · ")}</p>`;
     return `<li class="issue">${lien ? `<a href="${esc(lien)}" target="_blank" rel="noopener">${inner}</a>` : `<div>${inner}</div>`}</li>`;
