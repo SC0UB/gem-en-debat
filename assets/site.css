@@ -164,3 +164,11 @@ a.annonce:hover b span { transform: translateX(4px); }
 .ev-card-go { display: inline-flex; gap: 6px; margin-top: 8px; font-size: 14px; font-weight: 800; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--c); }
 .ev-card-go span { transition: transform .2s; }
 .ev-card-go:hover span { transform: translateX(4px); }
+
+/* ---------- Galeries « En images » (onglet Photos du Sheet) ---------- */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 16px; }
+.gallery figure { margin: 0; }
+.gallery a { display: block; overflow: hidden; aspect-ratio: 4 / 3; background: #eef1f8; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.gallery a:hover img { transform: scale(1.04); }
+.gallery figcaption { margin-top: 8px; font-size: 14px; font-weight: 600; color: #4a4a58; }

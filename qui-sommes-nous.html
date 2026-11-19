@@ -23,6 +23,7 @@
   .member .av img { width: 100%; height: 100%; object-fit: cover; }
   .member h3 { font-stretch: 108%; font-weight: 700; font-size: 18px; line-height: 1.2; }
   .member p { font-size: 14px; color: #4a4a58; }
+  .member .bio { margin-top: 8px; color: var(--ink); line-height: 1.45; }
   .partners { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
   .partners > * { display: block; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 22px; text-decoration: none; color: inherit; transition: background .2s; }
   .partners > a:hover { background: #f3f6ff; }
@@ -60,7 +61,7 @@
 
   <section class="sec">
     <div class="wrap">
-      <h2 class="display">Notre mission</h2>
+      <h2 class="display" data-texte="qui-titre-notre-mission">Notre mission</h2>
       <div class="body">
         <p class="big" data-texte="qui-accroche">On invite des personnalités qui font l'actualité. Et on laisse la salle leur répondre.</p>
         <div data-texte="qui-mission">
@@ -68,10 +69,10 @@
         <p>Nos conférences sont gratuites et ouvertes à tous, à Grenoble comme à Pantin.</p>
         </div>
         <div class="stats">
-          <div><b>+40</b><span>événements en 2025-2026</span></div>
-          <div><b>44</b><span>membres</span></div>
-          <div><b>9</b><span>pôles</span></div>
-          <div><b>2006</b><span>année de création</span></div>
+          <div><b data-texte="qui-chiffre-1">+40</b><span data-texte="qui-chiffre-1-legende">événements en 2025-2026</span></div>
+          <div><b data-texte="qui-chiffre-2">44</b><span data-texte="qui-chiffre-2-legende">membres</span></div>
+          <div><b data-texte="qui-chiffre-3">9</b><span data-texte="qui-chiffre-3-legende">pôles</span></div>
+          <div><b data-texte="qui-chiffre-4">2006</b><span data-texte="qui-chiffre-4-legende">année de création</span></div>
         </div>
       </div>
     </div>
@@ -79,15 +80,15 @@
 
   <section class="sec">
     <div class="wrap">
-      <h2 class="display">Ce qu'on fait</h2>
+      <h2 class="display" data-texte="qui-titre-fait">Ce qu'on fait</h2>
       <div class="body">
         <div class="blocks">
-          <a class="block" href="conferences.html" style="--c:var(--conf);--fg:#fff"><h3>Conférences</h3><p>Des invités, un sujet, et le micro à la salle.</p><span class="go">Voir →</span></a>
-          <a class="block" href="eloquence.html" style="--c:var(--elo);--fg:var(--ink)"><h3>Éloquence</h3><p>Ateliers et concours pour apprendre à prendre la parole.</p><span class="go">Voir →</span></a>
-          <a class="block" href="tedx.html" style="--c:var(--ted);--fg:#fff"><h3>TEDx</h3><p>Le grand rendez-vous de fin d'année.</p><span class="go">Voir →</span></a>
-          <a class="block" href="podcasts.html" style="--c:var(--pod);--fg:var(--pod-fg)"><h3>Podcasts</h3><p>Les débats continuent au micro.</p><span class="go">Écouter →</span></a>
-          <a class="block" href="la-quinzaine.html" style="--c:var(--quinz);--fg:var(--quinz-fg)"><h3>La Quinzaine</h3><p>Notre journal étudiant, chaque mois.</p><span class="go">Lire →</span></a>
-          <a class="block" href="ged-paris.html" style="--c:var(--paris);--fg:var(--paris-fg)"><h3>GED Paris</h3><p>Notre antenne sur le campus de Pantin.</p><span class="go">Voir →</span></a>
+          <a class="block" href="conferences.html" style="--c:var(--conf);--fg:#fff"><h3 data-texte="qui-conferences">Conférences</h3><p data-texte="qui-des-invites-sujet">Des invités, un sujet, et le micro à la salle.</p><span class="go">Voir →</span></a>
+          <a class="block" href="eloquence.html" style="--c:var(--elo);--fg:var(--ink)"><h3 data-texte="qui-eloquence">Éloquence</h3><p data-texte="qui-ateliers-concours-pour">Ateliers et concours pour apprendre à prendre la parole.</p><span class="go">Voir →</span></a>
+          <a class="block" href="tedx.html" style="--c:var(--ted);--fg:#fff"><h3 data-texte="qui-tedx">TEDx</h3><p data-texte="qui-grand-rendez-vous">Le grand rendez-vous de fin d'année.</p><span class="go">Voir →</span></a>
+          <a class="block" href="podcasts.html" style="--c:var(--pod);--fg:var(--pod-fg)"><h3 data-texte="qui-podcasts">Podcasts</h3><p data-texte="qui-les-debats-continuent">Les débats continuent au micro.</p><span class="go">Écouter →</span></a>
+          <a class="block" href="la-quinzaine.html" style="--c:var(--quinz);--fg:var(--quinz-fg)"><h3 data-texte="qui-quinzaine">La Quinzaine</h3><p data-texte="qui-notre-journal-etudiant">Notre journal étudiant, chaque mois.</p><span class="go">Lire →</span></a>
+          <a class="block" href="ged-paris.html" style="--c:var(--paris);--fg:var(--paris-fg)"><h3 data-texte="qui-ged-paris">GED Paris</h3><p data-texte="qui-notre-antenne-sur">Notre antenne sur le campus de Pantin.</p><span class="go">Voir →</span></a>
         </div>
       </div>
     </div>
@@ -95,26 +96,32 @@
 
   <section class="sec">
     <div class="wrap">
-      <h2 class="display">L'équipe</h2>
+      <h2 class="display" data-texte="qui-titre-equipe">L'équipe</h2>
       <div class="body">
         <div class="team" id="team"></div>
       </div>
     </div>
   </section>
 
+  <section class="sec" data-photos="Qui sommes-nous" hidden>
+    <div class="wrap">
+      <h2 class="display" data-texte="qui-titre-photos">L'équipe en images</h2>
+      <div class="body"><div class="gallery"></div></div>
+    </div>
+  </section>
+
   <section class="sec">
     <div class="wrap">
-      <h2 class="display">Partenaires</h2>
+      <h2 class="display" data-texte="qui-titre-partenaires">Partenaires</h2>
       <div class="body">
         <div class="partners" id="partners"></div>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="sec" id="partenaire">
     <div class="wrap">
-      <h2 class="display">Devenir partenaire</h2>
+      <h2 class="display" data-texte="qui-titre-devenir-partenaire">Devenir partenaire</h2>
       <div class="body">
         <p class="big" data-texte="partenaire-accroche">Soutenez l'art du débat.</p>
         <p data-texte="partenaire-texte">En devenant partenaire, vous faites vivre des conférences de qualité, vous aidez à former les orateurs de demain et vous encouragez l'engagement intellectuel des étudiants. Entreprise, institution ou acteur engagé : votre soutien nous permet d'organiser des conférences, des débats et des concours d'éloquence toujours plus ambitieux.</p>
@@ -128,7 +135,7 @@
 
   <section class="sec" id="contact">
     <div class="wrap">
-      <h2 class="display">Nous contacter</h2>
+      <h2 class="display" data-texte="qui-titre-nous-contacter">Nous contacter</h2>
       <div class="body">
         <p data-texte="contact-texte">Une idée d'invité, une question, envie de monter sur scène au TEDx ? Écrivez-nous ou suivez-nous.</p>
         <div class="contact">
@@ -162,6 +169,7 @@ CONTENU.tab("Équipe").then(rows => {
       <div class="av" style="background:${bg};color:${fg}">${photo ? `<img src="${esc(photo)}" alt="${esc(nom)}" loading="lazy" referrerpolicy="no-referrer">` : esc(initials(nom))}</div>
       <h3>${esc(nom)}</h3>
       <p>${esc(get(r, "role"))}</p>
+      ${get(r, "description") ? `<p class="bio">${esc(get(r, "description"))}</p>` : ""}
     </div>`;
   }).join("");
 });

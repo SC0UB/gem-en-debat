@@ -7,13 +7,13 @@
    Tant qu'il est vide, ou si Google ne répond pas, le site lit les copies
    du dossier contenu/ (une par onglet).
    ========================================================= */
-const SHEET_ID = "1OUKVuAubXkrJOj7DrooXEPJ8q-EgL62lZc37IbvKq_w";
+const SHEET_ID = "1blZURW0aiJtQRs2KsF9F7LSl9arJErmf9xKEQQ6GMgU";
 
 (() => {
   // onglet du Sheet → copie de secours dans contenu/
   const ONGLETS = {
     "Événements": "evenements", "Annonce": "annonce", "Équipe": "equipe",
-    "Partenaires": "partenaires", "Quinzaine": "quinzaine", "Textes": "textes",
+    "Partenaires": "partenaires", "Quinzaine": "quinzaine", "Photos": "photos", "Textes": "textes",
   };
 
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])).replace(/ ([?!:;»])/g, " $1");
@@ -110,6 +110,18 @@ const SHEET_ID = "1OUKVuAubXkrJOj7DrooXEPJ8q-EgL62lZc37IbvKq_w";
     if (home) home.insertAdjacentHTML("afterbegin", html);
     else document.querySelector("[data-site-header]")?.insertAdjacentHTML("afterend", html);
   });
+
+  /* ---------- Les galeries « En images » (onglet Photos) ---------- */
+  const galleries = document.querySelectorAll("[data-photos]");
+  if (galleries.length) tab("Photos").then(rows => galleries.forEach(sec => {
+    const mine = rows.filter(r => norm(get(r, "page")) === norm(sec.dataset.photos) && get(r, "photo"));
+    if (!mine.length) return;
+    sec.querySelector(".gallery").innerHTML = mine.map(r => {
+      const src = image(get(r, "photo"), 1400), cap = get(r, "legende");
+      return `<figure><a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy" referrerpolicy="no-referrer"></a>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
+    }).join("");
+    sec.hidden = false;
+  }));
 
   /* ---------- Les partenaires dans le pied de page ---------- */
   const foot = document.querySelector("[data-partenaires]");
