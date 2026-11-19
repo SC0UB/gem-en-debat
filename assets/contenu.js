@@ -7,13 +7,13 @@
    Tant qu'il est vide, ou si Google ne répond pas, le site lit les copies
    du dossier contenu/ (une par onglet).
    ========================================================= */
-const SHEET_ID = "1blZURW0aiJtQRs2KsF9F7LSl9arJErmf9xKEQQ6GMgU";
+const SHEET_ID = "1THPYbx_VVEasc8qlWT7rW4HWj_nZ177tpstfyT_K0Q4";
 
 (() => {
   // onglet du Sheet → copie de secours dans contenu/
   const ONGLETS = {
     "Événements": "evenements", "Annonce": "annonce", "Équipe": "equipe",
-    "Partenaires": "partenaires", "Quinzaine": "quinzaine", "Photos": "photos", "Textes": "textes",
+    "Partenaires": "partenaires", "Quinzaine": "quinzaine", "Photos d'équipe": "photos-equipe", "Photos": "photos", "Textes": "textes",
   };
 
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])).replace(/ ([?!:;»])/g, " $1");
@@ -85,17 +85,23 @@ const SHEET_ID = "1blZURW0aiJtQRs2KsF9F7LSl9arJErmf9xKEQQ6GMgU";
     return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w${size}` : v;
   }
 
-  // texte du Sheet → HTML (une ligne vide = un nouveau paragraphe)
-  const lines = t => esc(t).replace(/\n/g, "<br>");
+  // texte du Sheet → HTML (une ligne vide = un nouveau paragraphe, [texte](lien) = un lien)
+  const lines = t => esc(t).replace(/\n/g, "<br>")
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, txt, url) => `<a href="${url}"${/^https?:/.test(url) ? ' target="_blank" rel="noopener"' : ""}>${txt}</a>`);
   const paras = t => t.split(/\n\s*\n/).map(p => `<p>${lines(p.trim())}</p>`).join("");
 
   /* ---------- Les textes des pages (onglet Textes) ---------- */
-  const marked = document.querySelectorAll("[data-texte]");
-  if (marked.length) tab("Textes").then(rows => {
+  const marked = document.querySelectorAll("[data-texte]"), linked = document.querySelectorAll("[data-lien]");
+  if (marked.length || linked.length) tab("Textes").then(rows => {
     const T = Object.fromEntries(rows.map(r => [get(r, "cle"), get(r, "texte")]));
     marked.forEach(el => {
       const v = T[el.dataset.texte];
       if (v) el.innerHTML = el.tagName === "DIV" ? paras(v) : lines(v);
+    });
+    // les liens des boutons (une adresse e-mail seule devient un lien « écrire à »)
+    linked.forEach(el => {
+      const v = (T[el.dataset.lien] || "").trim();
+      if (v) el.href = /^[^\s:/]+@[^\s/]+$/.test(v) ? "mailto:" + v : v;
     });
   });
 
@@ -111,17 +117,20 @@ const SHEET_ID = "1blZURW0aiJtQRs2KsF9F7LSl9arJErmf9xKEQQ6GMgU";
     else document.querySelector("[data-site-header]")?.insertAdjacentHTML("afterend", html);
   });
 
-  /* ---------- Les galeries « En images » (onglet Photos) ---------- */
-  const galleries = document.querySelectorAll("[data-photos]");
-  if (galleries.length) tab("Photos").then(rows => galleries.forEach(sec => {
-    const mine = rows.filter(r => norm(get(r, "page")) === norm(sec.dataset.photos) && get(r, "photo"));
-    if (!mine.length) return;
-    sec.querySelector(".gallery").innerHTML = mine.map(r => {
-      const src = image(get(r, "photo"), 1400), cap = get(r, "legende");
-      return `<figure><a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy" referrerpolicy="no-referrer"></a>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
-    }).join("");
-    sec.hidden = false;
-  }));
+  /* ---------- Les galeries de photos ----------
+     data-photos="Page" : les lignes de l'onglet Photos pour cette page
+     data-onglet="Photos d'équipe" : toutes les lignes de cet onglet */
+  document.querySelectorAll("[data-photos], [data-onglet]").forEach(sec => {
+    tab(sec.dataset.onglet || "Photos").then(rows => {
+      const mine = rows.filter(r => get(r, "photo") && (sec.dataset.onglet || norm(get(r, "page")) === norm(sec.dataset.photos)));
+      if (!mine.length) return;
+      sec.querySelector(".gallery").innerHTML = mine.map(r => {
+        const src = image(get(r, "photo"), 1400), cap = get(r, "legende");
+        return `<figure><a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy" referrerpolicy="no-referrer"></a>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
+      }).join("");
+      sec.hidden = false;
+    });
+  });
 
   /* ---------- Les partenaires dans le pied de page ---------- */
   const foot = document.querySelector("[data-partenaires]");

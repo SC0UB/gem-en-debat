@@ -209,20 +209,20 @@
   </div>
 
   <div class="i-head"><h1 class="display" data-texte="accueil-titre">Les prochains rendez-vous de GEM en Débat.</h1></div>
-  <div class="i-side"><b>Saison <span id="season"></span></b><span>Gratuit · ouvert à tous</span><span>Inscription en un clic</span><a class="i-partner" href="qui-sommes-nous.html#partenaire">Devenir partenaire →</a></div>
+  <div class="i-side"><b>Saison <span id="season"></span></b><span data-texte="accueil-info-1">Gratuit · ouvert à tous</span><span data-texte="accueil-info-2">Inscription en un clic</span><a class="i-partner" href="qui-sommes-nous.html#partenaire" data-texte="accueil-bouton-partenaire">Devenir partenaire →</a></div>
 
   <!-- les événements sont ajoutés ici -->
 
   <div class="i-logo" style="color:var(--ink)"><svg class="mark" viewBox="0 0 300 140" role="img" aria-label="GEM en Débat"><use href="#logo"/></svg></div>
-  <a class="i-down" href="#univers">Découvrir l'asso <span>↓</span></a>
+  <a class="i-down" href="#univers"><span data-texte="accueil-decouvrir" style="animation:none">Découvrir l'asso</span> <span>↓</span></a>
 </header>
 
 <!-- ÉCRAN 2 : la mosaïque -->
 <main class="mosaic" id="univers">
   <a class="tile t-conf" href="conferences.html">
-    <h2 class="display">Conférences</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-conferences">Conférences</h2>
     <ul class="list" id="conf-list"></ul>
-    <p class="desc">Voir toutes les dates <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-voir-toutes-les">Voir toutes les dates</span> <span>→</span></p>
     <svg class="art" viewBox="0 0 400 300" aria-hidden="true">
       <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#cfdcff" stroke-width="14" stroke-linejoin="round" opacity=".9"/>
       <circle cx="150" cy="124" r="13" fill="#cfdcff"/><circle cx="205" cy="122" r="13" fill="#cfdcff"/><circle cx="260" cy="120" r="13" fill="#cfdcff"/>
@@ -230,18 +230,18 @@
   </a>
 
   <a class="tile t-elo" href="eloquence.html">
-    <h2 class="display">Éloquence</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-eloquence">Éloquence</h2>
     <svg class="art" viewBox="0 0 300 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <path d="M20 128 C20 70 40 30 92 12 L100 30 C72 44 62 62 62 80 L100 80 L100 128 Z M130 128 C130 70 150 30 202 12 L210 30 C182 44 172 62 172 80 L210 80 L210 128 Z" fill="#4b5200"/>
     </svg>
-    <p class="desc">Concours, ateliers, prise de parole <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-concours-ateliers-prise">Concours, ateliers, prise de parole</span> <span>→</span></p>
   </a>
 
   <a class="tile t-ted" href="tedx.html">
-    <h2 class="display">TEDx</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-tedx">TEDx</h2>
     <p class="tag" data-texte="accueil-tuile-tedx">Le grand rendez-vous de fin d'année, organisé par l'asso.</p>
     <span class="art" aria-hidden="true">x</span>
-    <p class="desc">Découvrir le TEDx <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-decouvrir-tedx">Découvrir le TEDx</span> <span>→</span></p>
   </a>
 
   <div class="tile t-logo" aria-label="GEM en Débat">
@@ -249,25 +249,25 @@
   </div>
 
   <a class="tile t-quinz" href="la-quinzaine.html">
-    <h2 class="display">La Quinzaine</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-quinzaine">La Quinzaine</h2>
     <p class="kicker" data-texte="accueil-tuile-quinzaine">Le journal étudiant de GEM, chaque mois.</p>
     <span class="art" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-    <p class="desc">Lire les numéros <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-lire-les-numeros">Lire les numéros</span> <span>→</span></p>
   </a>
 
   <a class="tile t-pod" href="podcasts.html">
-    <h2 class="display">Podcasts</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-podcasts">Podcasts</h2>
     <span class="art" aria-hidden="true" id="wave"></span>
-    <p class="desc">Écouter <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-ecouter">Écouter</span> <span>→</span></p>
   </a>
 
   <a class="tile t-team" href="qui-sommes-nous.html">
-    <h2 class="display">Qui sommes-<br>nous</h2>
+    <h2 class="display" data-texte="accueil-tuile-titre-qui-sommes-nous">Qui sommes-<br>nous</h2>
     <svg class="art" viewBox="0 0 260 180" aria-hidden="true">
       <g stroke="#8fd0e8" stroke-width="4" fill="none"><path d="M30 40 L130 90 L230 30 M130 90 L80 160 M130 90 L210 150 M30 40 L80 160"/></g>
       <g fill="#8fd0e8"><rect x="16" y="26" width="28" height="28" rx="8"/><rect x="116" y="76" width="28" height="28" rx="8"/><rect x="216" y="16" width="28" height="28" rx="8"/><rect x="66" y="146" width="28" height="28" rx="8"/><rect x="196" y="136" width="28" height="28" rx="8"/></g>
     </svg>
-    <p class="desc">L'équipe, nos partenaires, devenir partenaire <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-equipe-nos-partenaires">L'équipe, nos partenaires, devenir partenaire</span> <span>→</span></p>
   </a>
 </main>
 

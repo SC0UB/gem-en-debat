@@ -40,8 +40,8 @@
 
   const footer = document.querySelector("[data-site-footer]");
   if (footer) footer.innerHTML = `
-    <div><h6>Nous trouver</h6>Grenoble École de Management<br>12 rue Pierre Sémard, Grenoble<br>et sur le campus de Pantin (Paris)</div>
+    <div><h6>Nous trouver</h6><span data-texte="pied-adresse">Grenoble École de Management<br>12 rue Pierre Sémard, Grenoble<br>et sur le campus de Pantin (Paris)</span></div>
     <div><h6>Nous suivre</h6><ul>${SOCIAL.map(([label, url]) => `<li><a href="${url}" target="_blank" rel="noopener">${label}</a></li>`).join("")}</ul></div>
     <div><h6>Ils nous soutiennent</h6><span data-partenaires>CIC Lyonnaise de Banque · Oresys · Grenoble École de Management · CIRFA</span><br><a href="qui-sommes-nous.html#partenaire">Devenir partenaire →</a></div>
-    <div><h6>GEM en Débat</h6>© ${new Date().getFullYear()} — la tribune étudiante de GEM</div>`;
+    <div><h6>GEM en Débat</h6>© ${new Date().getFullYear()} — <span data-texte="pied-signature">la tribune étudiante de GEM</span></div>`;
 })();

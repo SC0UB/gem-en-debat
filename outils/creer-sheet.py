@@ -12,9 +12,9 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 ROOT = Path(__file__).resolve().parent.parent
 TABS = [("Événements", "evenements"), ("Annonce", "annonce"), ("Équipe", "equipe"), ("Partenaires", "partenaires"),
-        ("Quinzaine", "quinzaine"), ("Photos", "photos"), ("Textes", "textes")]
+        ("Quinzaine", "quinzaine"), ("Photos d'équipe", "photos-equipe"), ("Photos", "photos"), ("Textes", "textes")]
 TYPES = ["Conférence", "TEDx", "Éloquence", "Podcast", "Café-débat", "Autre"]
-PAGES = ["Conférences", "Éloquence", "TEDx", "La Quinzaine", "Podcasts", "GED Paris", "Qui sommes-nous"]
+PAGES = ["Conférences", "Éloquence", "TEDx", "La Quinzaine", "Podcasts", "GED Paris"]
 IMAGES = "dans le dossier Drive « GEM en Débat — Images du site » (clic droit → Partager → Copier le lien)."
 
 # aide affichée au survol des titres de colonnes : (onglet, colonne) puis colonne seule
@@ -38,7 +38,10 @@ AIDE = {
     "Lien du PDF": "Lien du PDF du numéro (partagé à tous ceux qui ont le lien).",
     "Page": "La page du site où la photo apparaît, dans la section « En images ».",
     ("Textes", "Page"): "La page du site où se trouve ce texte.",
+    ("Textes", "Clé (ne pas modifier)"): "Repère utilisé par le site. Ne pas modifier. Les clés qui finissent par « -lien » sont l'adresse d'un bouton.",
+    ("Textes", "Texte"): "Le texte affiché sur le site. Une ligne vide = un nouveau paragraphe. Pour un lien : [texte](adresse).",
     "Légende": "Facultatif : le texte sous la photo.",
+    ("Photos d'équipe", "Photo"): "Photo de groupe, affichée sur la page Qui sommes-nous (« L'équipe en images »). Lien de la photo " + IMAGES,
     "Clé (ne pas modifier)": "Repère utilisé par le site. Ne pas modifier.",
 }
 LARG = {"Masquer": 10, "À la une": 10, "Type": 14, "Titre": 38, "Description": 44, "Date": 13, "Heure": 9,

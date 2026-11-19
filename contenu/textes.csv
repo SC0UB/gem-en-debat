@@ -1,7 +1,25 @@
 Page,Clé (ne pas modifier),Texte
 Accueil,accueil-titre,Les prochains rendez-vous de GEM en Débat.
+Accueil,accueil-info-1,Gratuit · ouvert à tous
+Accueil,accueil-info-2,Inscription en un clic
+Accueil,accueil-bouton-partenaire,Devenir partenaire →
+Accueil,accueil-decouvrir,Découvrir l'asso
+Accueil,accueil-tuile-titre-conferences,Conférences
+Accueil,accueil-tuile-voir-toutes-les,Voir toutes les dates
+Accueil,accueil-tuile-titre-eloquence,Éloquence
+Accueil,accueil-tuile-concours-ateliers-prise,"Concours, ateliers, prise de parole"
+Accueil,accueil-tuile-titre-tedx,TEDx
 Accueil,accueil-tuile-tedx,"Le grand rendez-vous de fin d'année, organisé par l'asso."
+Accueil,accueil-tuile-decouvrir-tedx,Découvrir le TEDx
+Accueil,accueil-tuile-titre-quinzaine,La Quinzaine
 Accueil,accueil-tuile-quinzaine,"Le journal étudiant de GEM, chaque mois."
+Accueil,accueil-tuile-lire-les-numeros,Lire les numéros
+Accueil,accueil-tuile-titre-podcasts,Podcasts
+Accueil,accueil-tuile-ecouter,Écouter
+Accueil,accueil-tuile-titre-qui-sommes-nous,"Qui sommes-
+nous"
+Accueil,accueil-tuile-equipe-nos-partenaires,"L'équipe, nos partenaires, devenir partenaire"
+Conférences,conferences-grand-titre,Conférences
 Conférences,conferences-intro,"Des invités politiques, sportifs, entrepreneurs, personnalités publiques. Un sujet qui fait débat, et une large place aux questions de la salle. Gratuit et ouvert à tous."
 Conférences,conferences-titre-venir,À venir
 Conférences,conferences-titre-notre-adn,Notre ADN
@@ -10,14 +28,18 @@ Conférences,conferences-adn,"La conférence est un espace d'échange et de réf
 Économie, développement durable, politique, entrepreneuriat, sport : nos invités sont chercheurs, chefs d'entreprise, journalistes, figures publiques ou acteurs du changement. Chaque conférence est pensée pour faire réfléchir et pour laisser la salle échanger avec eux.
 
 Chaque année, environ 14 conférences et plusieurs tables rondes, gratuites et ouvertes à tous : étudiants de GEM, Grenoblois et Pantinois."
+Conférences,conferences-bouton-revoir-nos-conferences-lien,https://www.youtube.com/@gemendebat
+Conférences,conferences-bouton-revoir-nos-conferences,Revoir nos conférences sur YouTube
 Conférences,conferences-titre-comment-marche,Comment ça marche
 Conférences,conferences-inscrivez-vous,Inscrivez-vous
 Conférences,conferences-clic-sur-helloasso,"En un clic sur HelloAsso, depuis ce site ou le QR code de l'affiche. C'est gratuit."
 Conférences,conferences-venez-gem,Venez à GEM
+Conférences,conferences-avec-lien-grenoble-ecole-management,"À Grenoble École de Management, 12 rue Pierre Sémard, ou sur le campus de Pantin avec [GED Paris](ged-paris.html)."
 Conférences,conferences-prenez-parole,Prenez la parole
 Conférences,conferences-apres-intervention-salle,"Après l'intervention, la salle a le micro : questions, objections, réactions."
 Conférences,conferences-titre-deja-debattu,Déjà débattu
 Conférences,conferences-titre-photos,En images
+Éloquence,eloquence-grand-titre,Éloquence
 Éloquence,eloquence-intro,"Plus qu'un exercice de style : un art, une discipline et un défi permanent. Convaincre, émouvoir, captiver une salle, ça se travaille avec nous."
 Éloquence,eloquence-titre-eloquence-chez-nous,L'éloquence chez nous
 Éloquence,eloquence-chez-nous,"Nos membres développent leur aisance à l'oral, leur argumentation et leur répartie grâce à des entraînements réguliers, des simulations de joutes oratoires et des formats variés, du plaidoyer au discours libre.
@@ -33,6 +55,7 @@ Pour nous, la prise de parole est une compétence essentielle, à l'école comme
 Éloquence,eloquence-concours,Concours
 Éloquence,eloquence-concours-berriat,Le Concours Berriat
 Éloquence,eloquence-chaque-annee-printemps,"Chaque année au printemps, à GEM Grenoble : notre tournoi régional d'éloquence, ouvert aux étudiants de toute la région, devant un jury et un public."
+Éloquence,eloquence-avec-lien-paris-eloquence-pratique,"À Paris, l'éloquence se pratique aussi avec [GED Paris](ged-paris.html) et le concours Jean Lolive."
 Éloquence,eloquence-titre-prochains-rendez-vous,Prochains rendez-vous
 Éloquence,eloquence-titre-deja-passes,Déjà passés
 Éloquence,eloquence-titre-photos,En images
@@ -51,6 +74,8 @@ TEDx,tedx-devenir-partenaire,Devenir partenaire
 TEDx,tedx-soutenir-evenement-associer,Soutenir l'événement et associer votre structure à un rendez-vous étudiant.
 TEDx,tedx-titre-editions-passees,Éditions passées
 TEDx,tedx-titre-photos,En images
+La Quinzaine,quinzaine-grand-titre,"La
+Quinzaine"
 La Quinzaine,quinzaine-intro,"Le journal de GEM en Débat. Chaque mois, 300 à 500 exemplaires, devenus une vraie institution à l'école."
 La Quinzaine,quinzaine-titre-les-numeros,Les numéros
 La Quinzaine,quinzaine-titre-redaction,La rédaction
@@ -60,6 +85,7 @@ Recherche d'idées, écriture, relecture, mise en page : le journal vise un rés
 
 Pour ses lecteurs, c'est une pause stimulante pour découvrir de nouveaux sujets, tout en restant connecté à la vie de GEM. La Quinzaine est réservée aux étudiants de GEM."
 La Quinzaine,quinzaine-titre-photos,En images
+Podcasts,podcasts-grand-titre,Podcasts
 Podcasts,podcasts-intro,"Des parcours inspirants et des invités qui font débat, en version longue, à écouter partout."
 Podcasts,podcasts-titre-deux-formats,Deux formats
 Podcasts,podcasts-alumni,Alumni
@@ -69,7 +95,13 @@ Podcasts,podcasts-invites,Invités
 Podcasts,podcasts-posait-question,Et si on posait la question ?
 Podcasts,podcasts-des-profils-atypiques,"Des profils atypiques et des personnalités intellectuelles, politiques ou culturelles développent leurs arguments autour d'une question préparée à l'avance."
 Podcasts,podcasts-titre-ecouter,Écouter
+Podcasts,podcasts-bouton-spotify-lien,https://open.spotify.com/show/1kRKRfo9S6Daf0RY1WikfS
+Podcasts,podcasts-bouton-spotify,Spotify
+Podcasts,podcasts-bouton-deezer-lien,https://dzr.page.link/9wfsUjTHdBGCpL7S6
+Podcasts,podcasts-bouton-deezer,Deezer
 Podcasts,podcasts-titre-photos,En images
+GED Paris,paris-grand-titre,"GED
+Paris"
 GED Paris,paris-intro,"Depuis septembre 2025, GEM en Débat a son antenne sur le nouveau campus de GEM à Pantin."
 GED Paris,paris-titre-gem-debat-grandit,GEM en Débat grandit à Paris
 GED Paris,paris-accroche,"Une douzaine de membres, et déjà un acteur majeur de la vie associative du campus de Pantin."
@@ -86,6 +118,8 @@ GED Paris,paris-concours-jean-lolive,Le concours Jean Lolive
 GED Paris,paris-notre-concours-eloquence,"Notre concours d'éloquence, ouvert aux étudiants de GEM Pantin, aux lycéens pantinois et aux étudiants de tout Paris. Sa première finale, le 19 mars 2026, a été un franc succès."
 GED Paris,paris-titre-prochains-rendez-vous,Prochains rendez-vous à Paris
 GED Paris,paris-titre-photos,En images
+Qui sommes-nous,qui-grand-titre,"Qui sommes-
+nous"
 Qui sommes-nous,qui-intro,"La tribune étudiante de Grenoble École de Management, depuis 2006. À Grenoble et à Pantin."
 Qui sommes-nous,qui-titre-notre-mission,Notre mission
 Qui sommes-nous,qui-accroche,On invite des personnalités qui font l'actualité. Et on laisse la salle leur répondre.
@@ -119,5 +153,15 @@ Qui sommes-nous,qui-titre-partenaires,Partenaires
 Qui sommes-nous,qui-titre-devenir-partenaire,Devenir partenaire
 Qui sommes-nous,partenaire-accroche,Soutenez l'art du débat.
 Qui sommes-nous,partenaire-texte,"En devenant partenaire, vous faites vivre des conférences de qualité, vous aidez à former les orateurs de demain et vous encouragez l'engagement intellectuel des étudiants. Entreprise, institution ou acteur engagé : votre soutien nous permet d'organiser des conférences, des débats et des concours d'éloquence toujours plus ambitieux."
+Qui sommes-nous,qui-bouton-telecharger-notre-plaquette-lien,https://s3.amazonaws.com/polo-content/1541274/818ed071fc1d4e169b04b0e47cca9021
+Qui sommes-nous,qui-bouton-telecharger-notre-plaquette,Télécharger notre plaquette
+Qui sommes-nous,qui-bouton-ecrire-carla-bourne-lien,carla.bourne@grenoble-em.com
+Qui sommes-nous,qui-bouton-ecrire-carla-bourne,"Écrire à Carla Bourne, responsable partenariats"
 Qui sommes-nous,qui-titre-nous-contacter,Nous contacter
 Qui sommes-nous,contact-texte,"Une idée d'invité, une question, envie de monter sur scène au TEDx ? Écrivez-nous ou suivez-nous."
+Qui sommes-nous,qui-bouton-ecrire-presidente-lien,charlotte.bena@grenoble-em.com
+Qui sommes-nous,qui-bouton-ecrire-presidente,Écrire à la présidente
+Pied de page (toutes les pages),pied-adresse,"Grenoble École de Management
+12 rue Pierre Sémard, Grenoble
+et sur le campus de Pantin (Paris)"
+Pied de page (toutes les pages),pied-signature,la tribune étudiante de GEM
