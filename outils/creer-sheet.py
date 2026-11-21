@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TABS = [("Événements", "evenements"), ("Annonce", "annonce"), ("Équipe", "equipe"), ("Partenaires", "partenaires"),
         ("Quinzaine", "quinzaine"), ("Photos d'équipe", "photos-equipe"), ("Photos", "photos"), ("Textes", "textes")]
 TYPES = ["Conférence", "TEDx", "Éloquence", "Podcast", "Café-débat", "Autre"]
-PAGES = ["Conférences", "Éloquence", "TEDx", "La Quinzaine", "Podcasts", "GED Paris"]
+PAGES = ["Conférences", "Éloquence", "TEDx", "La Quinzaine", "Actu & Débats", "GED Paris"]
 IMAGES = "dans le dossier Drive « GEM en Débat — Images du site » (clic droit → Partager → Copier le lien)."
 
 # aide affichée au survol des titres de colonnes : (onglet, colonne) puis colonne seule

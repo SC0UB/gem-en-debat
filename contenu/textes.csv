@@ -14,8 +14,6 @@ Accueil,accueil-tuile-decouvrir-tedx,Découvrir le TEDx
 Accueil,accueil-tuile-titre-quinzaine,La Quinzaine
 Accueil,accueil-tuile-quinzaine,"Le journal étudiant de GEM, chaque mois."
 Accueil,accueil-tuile-lire-les-numeros,Lire les numéros
-Accueil,accueil-tuile-titre-podcasts,Podcasts
-Accueil,accueil-tuile-ecouter,Écouter
 Accueil,accueil-tuile-titre-qui-sommes-nous,"Qui sommes-
 nous"
 Accueil,accueil-tuile-equipe-nos-partenaires,"L'équipe, nos partenaires, devenir partenaire"
@@ -85,21 +83,17 @@ Recherche d'idées, écriture, relecture, mise en page : le journal vise un rés
 
 Pour ses lecteurs, c'est une pause stimulante pour découvrir de nouveaux sujets, tout en restant connecté à la vie de GEM. La Quinzaine est réservée aux étudiants de GEM."
 La Quinzaine,quinzaine-titre-photos,En images
-Podcasts,podcasts-grand-titre,Podcasts
-Podcasts,podcasts-intro,"Des parcours inspirants et des invités qui font débat, en version longue, à écouter partout."
-Podcasts,podcasts-titre-deux-formats,Deux formats
-Podcasts,podcasts-alumni,Alumni
-Podcasts,podcasts-profils-inspirants,Profils inspirants
-Podcasts,podcasts-des-diplomes-gem,"Des diplômés de GEM racontent leur parcours, pour montrer aux étudiants l'étendue des possibles, et rappeler que l'école n'est qu'une étape."
-Podcasts,podcasts-invites,Invités
-Podcasts,podcasts-posait-question,Et si on posait la question ?
-Podcasts,podcasts-des-profils-atypiques,"Des profils atypiques et des personnalités intellectuelles, politiques ou culturelles développent leurs arguments autour d'une question préparée à l'avance."
-Podcasts,podcasts-titre-ecouter,Écouter
-Podcasts,podcasts-bouton-spotify-lien,https://open.spotify.com/show/1kRKRfo9S6Daf0RY1WikfS
-Podcasts,podcasts-bouton-spotify,Spotify
-Podcasts,podcasts-bouton-deezer-lien,https://dzr.page.link/9wfsUjTHdBGCpL7S6
-Podcasts,podcasts-bouton-deezer,Deezer
-Podcasts,podcasts-titre-photos,En images
+Actu & Débats,podcasts-alumni,Alumni
+Actu & Débats,podcasts-profils-inspirants,Profils inspirants
+Actu & Débats,podcasts-des-diplomes-gem,"Des diplômés de GEM racontent leur parcours, pour montrer aux étudiants l'étendue des possibles, et rappeler que l'école n'est qu'une étape."
+Actu & Débats,podcasts-invites,Invités
+Actu & Débats,podcasts-posait-question,Et si on posait la question ?
+Actu & Débats,podcasts-des-profils-atypiques,"Des profils atypiques et des personnalités intellectuelles, politiques ou culturelles développent leurs arguments autour d'une question préparée à l'avance."
+Actu & Débats,podcasts-titre-ecouter,Écouter
+Actu & Débats,podcasts-bouton-spotify-lien,https://open.spotify.com/show/1kRKRfo9S6Daf0RY1WikfS
+Actu & Débats,podcasts-bouton-spotify,Spotify
+Actu & Débats,podcasts-bouton-deezer-lien,https://dzr.page.link/9wfsUjTHdBGCpL7S6
+Actu & Débats,podcasts-bouton-deezer,Deezer
 GED Paris,paris-grand-titre,"GED
 Paris"
 GED Paris,paris-intro,"Depuis septembre 2025, GEM en Débat a son antenne sur le nouveau campus de GEM à Pantin."
@@ -141,8 +135,6 @@ Qui sommes-nous,qui-eloquence,Éloquence
 Qui sommes-nous,qui-ateliers-concours-pour,Ateliers et concours pour apprendre à prendre la parole.
 Qui sommes-nous,qui-tedx,TEDx
 Qui sommes-nous,qui-grand-rendez-vous,Le grand rendez-vous de fin d'année.
-Qui sommes-nous,qui-podcasts,Podcasts
-Qui sommes-nous,qui-les-debats-continuent,Les débats continuent au micro.
 Qui sommes-nous,qui-quinzaine,La Quinzaine
 Qui sommes-nous,qui-notre-journal-etudiant,"Notre journal étudiant, chaque mois."
 Qui sommes-nous,qui-ged-paris,GED Paris
@@ -169,6 +161,15 @@ Conférences,Image cover Conférences,assets/pages/conferences.jpg
 Éloquence,Image cover Éloquence,
 TEDx,Image cover TEDx,
 La Quinzaine,Image cover La Quinzaine,
-Podcasts,Image cover Podcasts,
 GED Paris,Image cover GED Paris,
 Qui sommes-nous,Image cover Qui sommes-nous,
+Actu & Débats,actu-grand-titre,"Actu &
+Débats"
+Actu & Débats,actu-intro,"L'actualité décryptée et débattue, et nos podcasts à écouter partout."
+Actu & Débats,actu-titre-podcasts,Nos podcasts
+Actu & Débats,actu-titre-photos,En images
+Accueil,accueil-tuile-titre-actu,Actu & Débats
+Accueil,accueil-tuile-actu,Décrypter l'actu et écouter
+Qui sommes-nous,qui-actu,Actu & Débats
+Qui sommes-nous,qui-actu-texte,"L'actualité décryptée, débattue et en podcast."
+Actu & Débats,Image cover Actu & Débats,

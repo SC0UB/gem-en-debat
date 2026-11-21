@@ -6,7 +6,7 @@
     ["eloquence.html", "Éloquence"],
     ["tedx.html", "TEDx"],
     ["la-quinzaine.html", "La Quinzaine"],
-    ["podcasts.html", "Podcasts"],
+    ["actu-debats.html", "Actu & Débats"],
     ["ged-paris.html", "GED Paris"],
     ["qui-sommes-nous.html", "Qui sommes-nous"],
   ];

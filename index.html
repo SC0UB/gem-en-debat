@@ -6,11 +6,11 @@
 <meta name="color-scheme" content="only light">
 <meta name="darkreader-lock">
 <title>GEM en Débat</title>
-<meta name="description" content="GEM en Débat — la tribune étudiante de Grenoble École de Management. Conférences, éloquence, TEDx, La Quinzaine, podcasts.">
+<meta name="description" content="GEM en Débat — la tribune étudiante de Grenoble École de Management. Conférences, éloquence, TEDx, La Quinzaine, Actu &amp; Débats.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=4">
+<link rel="stylesheet" href="assets/site.css?v=5">
 <style>
   :root {
     /* les couleurs viennent de assets/site.css */
@@ -32,7 +32,7 @@
   .lines span:nth-last-child(-n+6) { border-bottom: 0; }
 
   .i-head { grid-column: 2 / span 3; grid-row: 2; padding: 30px 30px 30px 30px; position: relative; }
-  .i-head h1 { font-size: clamp(34px, 4.6vw, 66px); max-width: 13ch; }
+  .i-head h1 { font-size: clamp(40px, 5.6vw, 80px); max-width: 13ch; }
   /* le bandeau d'annonce, en pastille au-dessus du titre */
   .i-head .annonce { position: static; display: inline-flex; margin-bottom: 18px; padding: 8px 14px 7px; font-size: 14px; max-width: 100%; }
   .i-side { grid-column: 5; grid-row: 2; align-self: end; padding: 26px; font-size: 14px; font-weight: 600; display: grid; gap: 4px; position: relative; }
@@ -112,7 +112,7 @@
   .t-ted .art { right: 2%; bottom: -30%; font-stretch: 112%; font-weight: 900; font-size: clamp(220px, 26vw, 420px); line-height: 1; letter-spacing: -0.06em; color: rgba(0,0,0,.28); }
   .t-ted:hover .art { transform: rotate(12deg) scale(1.05); }
   .t-ted .tag { position: relative; z-index: 1; margin-top: 10px; font-weight: 700; font-size: 15px; max-width: 26ch; }
-  /* Podcasts : l'onde */
+  /* Actu & Débats : l'onde des podcasts */
   .t-pod .art { left: 10%; right: 10%; bottom: 14%; height: 44%; display: flex; align-items: center; gap: 6%; }
   .t-pod .art i { flex: 1; background: var(--pod-fg); border-radius: 99px; height: var(--h); transition: height .3s; }
   .t-pod:hover .art i { animation: wave .9s ease-in-out infinite alternate; animation-delay: calc(var(--k) * -.15s); }
@@ -193,7 +193,7 @@
       <a href="eloquence.html">Éloquence</a>
       <a href="tedx.html">TEDx</a>
       <a href="la-quinzaine.html">La Quinzaine</a>
-      <a href="podcasts.html">Podcasts</a>
+      <a href="actu-debats.html">Actu &amp; Débats</a>
       <a href="ged-paris.html">GED Paris</a>
       <a href="qui-sommes-nous.html">Qui sommes-nous</a>
     </nav>
@@ -246,10 +246,10 @@
     <p class="desc"><span data-texte="accueil-tuile-lire-les-numeros">Lire les numéros</span> <span>→</span></p>
   </a>
 
-  <a class="tile t-pod" href="podcasts.html">
-    <h2 class="display" data-texte="accueil-tuile-titre-podcasts">Podcasts</h2>
+  <a class="tile t-pod" href="actu-debats.html">
+    <h2 class="display" data-texte="accueil-tuile-titre-actu">Actu &amp; Débats</h2>
     <span class="art" aria-hidden="true" id="wave"></span>
-    <p class="desc"><span data-texte="accueil-tuile-ecouter">Écouter</span> <span>→</span></p>
+    <p class="desc"><span data-texte="accueil-tuile-actu">Décrypter l'actu et écouter</span> <span>→</span></p>
   </a>
 
   <a class="tile t-team" href="qui-sommes-nous.html">
@@ -266,9 +266,9 @@
 
 <footer class="site-footer" data-site-footer></footer>
 
-<script src="assets/site.js?v=4"></script>
-<script src="assets/contenu.js?v=4"></script>
-<script src="assets/events.js?v=4"></script>
+<script src="assets/site.js?v=5"></script>
+<script src="assets/contenu.js?v=5"></script>
+<script src="assets/events.js?v=5"></script>
 <script>
 const $ = s => document.querySelector(s);
 const { esc, pad, hour, MONTHS, DAYS } = GEM;
