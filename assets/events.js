@@ -5,12 +5,12 @@
 
 /* couleur de chaque type d'événement : [fond, texte] */
 const TYPES = {
-  "Conférence": ["#004bff", "#ffffff"],
-  "TEDx":       ["#e62b1e", "#ffffff"],
-  "Éloquence":  ["#ebf155", "#16151d"],
-  "Podcast":    ["#7a1d4f", "#ffb3d1"],
-  "Café-débat": ["#003649", "#8fd0e8"],
-  "Autre":      ["#16151d", "#ffffff"],
+  "Conférence": ["#f2f1ed", "#111111"],
+  "TEDx":       ["#e1251b", "#ffffff"],
+  "Éloquence":  ["#6f8fff", "#111111"],
+  "Podcast":    ["#2a2a2a", "#f2f1ed"],
+  "Café-débat": ["#2a2a2a", "#f2f1ed"],
+  "Autre":      ["#f2f1ed", "#111111"],
 };
 
 (() => {

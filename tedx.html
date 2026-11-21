@@ -9,17 +9,17 @@
 <meta name="description" content="Le TEDx organisé par GEM en Débat : le grand rendez-vous de fin d'année, des speakers et des idées.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=4">
 <style>
-  .p-hero .art { right: -2%; bottom: -34%; font-stretch: 112%; font-weight: 900; font-size: min(62vw, 820px); line-height: 1; letter-spacing: -0.06em; color: var(--ted-fg); transition: transform 1s cubic-bezier(.2,.8,.2,1); }
+  .p-hero .art { right: -2%; bottom: -34%; font-stretch: 112%; font-weight: 900; font-size: min(62vw, 820px); line-height: 1; letter-spacing: -0.06em; color: rgba(0,0,0,.28); transition: transform 1s cubic-bezier(.2,.8,.2,1); }
   .p-hero:hover .art { transform: rotate(10deg); }
-  .p-hero h1 span { color: #fff; }
+  .p-hero h1 span { color: #111; }
   .blocks a.block { --c: var(--ted); --fg: #fff; }
-  .note { margin-top: 16px; font-size: 14px; color: #6b6b78; max-width: 60ch; }
+  .note { margin-top: 16px; font-size: 14px; color: var(--muted); max-width: 60ch; }
 </style>
 </head>
-<body style="--accent: var(--ted)">
+<body style="--accent: var(--paper)">
 <header class="site-header" data-site-header></header>
 
 <main>
@@ -81,9 +81,9 @@
 
 <footer class="site-footer" data-site-footer></footer>
 
-<script src="assets/site.js"></script>
-<script src="assets/contenu.js"></script>
-<script src="assets/events.js"></script>
+<script src="assets/site.js?v=4"></script>
+<script src="assets/contenu.js?v=4"></script>
+<script src="assets/events.js?v=4"></script>
 <script>
 GEM.load().then(events => {
   const list = events.filter(e => e.type === "TEDx");

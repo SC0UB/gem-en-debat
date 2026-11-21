@@ -9,8 +9,8 @@
 <meta name="description" content="Les conférences de GEM en Débat : des invités, un sujet qui fait débat, et la parole à la salle. Gratuit et ouvert à tous.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=4">
 <style>
   .p-hero .art { right: -7%; bottom: -26%; width: min(46vw, 640px); transition: transform .8s cubic-bezier(.2,.8,.2,1); }
   .p-hero:hover .art { transform: rotate(-4deg) translate(-2%, -3%); }
@@ -21,7 +21,7 @@
   .p-hero .art circle { transform-box: fill-box; }
 </style>
 </head>
-<body style="--accent: var(--conf)">
+<body style="--accent: var(--paper)">
 <header class="site-header" data-site-header></header>
 
 <main>
@@ -32,8 +32,8 @@
       <p class="lead" data-texte="conferences-intro">Des invités politiques, sportifs, entrepreneurs, personnalités publiques. Un sujet qui fait débat, et une large place aux questions de la salle. Gratuit et ouvert à tous.</p>
     </div>
     <svg class="art" viewBox="0 0 400 300" aria-hidden="true">
-      <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#cfdcff" stroke-width="12" stroke-linejoin="round" opacity=".9"/>
-      <circle cx="150" cy="124" r="13" fill="#cfdcff"/><circle cx="205" cy="122" r="13" fill="#cfdcff"/><circle cx="260" cy="120" r="13" fill="#cfdcff"/>
+      <path d="M20 30 L380 14 L388 220 L120 232 L56 290 L72 234 L28 236 Z" fill="none" stroke="#f2f1ed" stroke-width="12" stroke-linejoin="round" opacity=".9"/>
+      <circle cx="150" cy="124" r="13" fill="#f2f1ed"/><circle cx="205" cy="122" r="13" fill="#f2f1ed"/><circle cx="260" cy="120" r="13" fill="#f2f1ed"/>
     </svg>
   </section>
 
@@ -88,9 +88,9 @@
 
 <footer class="site-footer" data-site-footer></footer>
 
-<script src="assets/site.js"></script>
-<script src="assets/contenu.js"></script>
-<script src="assets/events.js"></script>
+<script src="assets/site.js?v=4"></script>
+<script src="assets/contenu.js?v=4"></script>
+<script src="assets/events.js?v=4"></script>
 <script>
 GEM.load().then(events => {
   const confs = events.filter(e => e.type === "Conférence");
