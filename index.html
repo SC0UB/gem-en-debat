@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=5">
+<link rel="icon" href="assets/logo.svg">
+<link rel="stylesheet" href="assets/site.css?v=13">
 <style>
   :root {
     /* les couleurs viennent de assets/site.css */
@@ -27,7 +28,7 @@
   /* ---------- Écran 1 : la grille et les prochains rendez-vous ---------- */
   .intro { position: relative; min-height: 100svh; display: grid; grid-template-columns: var(--cols); grid-template-rows: var(--rows); color: var(--ink); }
   .lines { position: absolute; inset: 0; display: grid; grid-template-columns: var(--cols); grid-template-rows: var(--rows); pointer-events: none; }
-  .lines span { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .lines span { border-right: 2px solid var(--line); border-bottom: 2px solid var(--line); }
   .lines span:nth-child(6n) { border-right: 0; }
   .lines span:nth-last-child(-n+6) { border-bottom: 0; }
 
@@ -37,10 +38,12 @@
   .i-head .annonce { position: static; display: inline-flex; margin-bottom: 18px; padding: 8px 14px 7px; font-size: 14px; max-width: 100%; }
   .i-side { grid-column: 5; grid-row: 2; align-self: end; padding: 26px; font-size: 14px; font-weight: 600; display: grid; gap: 4px; position: relative; }
   .i-side .i-partner { margin-top: 10px; justify-self: start; text-decoration: none; border: 1px solid currentColor; padding: 6px 10px 5px; font-weight: 800; transition: background .15s, color .15s; }
-  .i-side .i-partner:hover { background: var(--ink); color: #111; }
+  .i-side .i-partner:hover { background: var(--ink); color: var(--white); }
   .i-side b { font-stretch: 112%; font-weight: 800; font-size: 15px; }
   .i-top { grid-column: 2 / span 4; grid-row: 1; display: flex; justify-content: space-between; align-items: center; padding: 0 2px; font-size: 13px; font-weight: 700; position: relative; }
   .i-top nav { display: flex; gap: 22px; }
+  .i-brand { display: block; width: 80px; color: var(--ink); }
+  .i-brand svg { display: block; width: 100%; height: auto; }
   .i-top a { text-decoration: none; }
   .i-top a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
@@ -94,7 +97,7 @@
   .t-pod  { grid-area: pod;  --bg: var(--pod);  --fg: var(--pod-fg); }
   .t-team { grid-area: team; --bg: var(--team); --fg: var(--team-fg); }
   .t-quinz { grid-area: quinz; --bg: var(--quinz); --fg: var(--quinz-fg); }
-  .t-logo { grid-area: logo; --bg: var(--paper); --fg: #111; display: grid; place-items: center; }
+  .t-logo { grid-area: logo; --bg: #ffffff; --fg: #111; box-shadow: inset 0 0 0 2px #111; display: grid; place-items: center; }
   .t-logo .mark { width: 78%; max-width: 260px; transition: transform .5s cubic-bezier(.2,.8,.2,1.4); }
   .t-logo:hover .mark { transform: rotate(-4deg) scale(1.06); }
 
@@ -137,9 +140,8 @@
   /* les fines lignes bleues au bord des carrés, comme sur Dropbox */
   .grid-lines { display: none; }
   .anim .grid-lines { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
-  .grid-lines line { stroke: var(--line); stroke-width: 1; }
+  .grid-lines line { stroke: var(--line); stroke-width: 2; }
   .anim .tile { z-index: 1; will-change: transform; }
-  .tile:not(.t-ted):not(.t-team):not(.t-logo) { box-shadow: inset 0 0 0 1px #2c2c2c; }
   .chip { display: none; }
   .anim .chip { display: block; position: absolute; left: 0; top: 0; width: 100px; height: 100px; z-index: 3; background: #111; transform-origin: 0 0; will-change: transform; pointer-events: none; }
   .anim .fly { z-index: 4; }
@@ -156,12 +158,18 @@
     .t-ted { min-height: 320px; }
   }
   @media (max-width: 860px) {
-    .intro { display: block; min-height: 0; padding: 0 16px 24px; }
+    .intro { display: flex; flex-direction: column; min-height: 0; padding: 0 16px 24px; }
     .lines { display: none; }
-    .i-top { padding: 18px 0; }
-    .i-top nav a:not(:last-child) { display: none; }
-    .i-head { padding: 28px 0 18px; border-top: 1px solid var(--line); }
-    .i-side { padding: 0 0 26px; }
+    .i-top { order: 0; flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 0 14px; }
+    .i-brand { width: 84px; }
+    .i-top nav { width: calc(100% + 32px); margin: 0 -16px; padding: 0 16px 4px; gap: 20px; overflow-x: auto; scrollbar-width: none; font-size: 14px; }
+    .i-top nav::-webkit-scrollbar { display: none; }
+    .i-top nav a { white-space: nowrap; }
+    .i-head { order: 1; padding: 28px 0 18px; border-top: 1px solid var(--line); }
+    .i-head h1 { font-size: clamp(44px, 13vw, 64px); }
+    .i-side { order: 2; }
+    .ev { order: 3; }
+    .i-side { padding: 0 0 26px; align-self: stretch; }
     .ev { border-top: 1px solid var(--line); height: auto; padding: 22px 6px; display: grid; grid-template-columns: 1fr auto; column-gap: 18px; row-gap: 8px; justify-items: start; }
     .ev > :not(.pv) { grid-column: 1; }
     .ev .go { margin-top: 6px; }
@@ -173,6 +181,14 @@
     .mosaic { grid-template-columns: 1fr; grid-template-areas: "conf" "elo" "ted" "quinz" "pod" "team"; }
     .t-logo { display: none; }
     .tile .desc { opacity: 1; transform: none; }
+    /* sur téléphone, les dessins passent en haut à droite pour ne pas couvrir le texte */
+    .tile { min-height: 230px; }
+    .t-conf { min-height: 0; }
+    .t-conf .art { display: none; }
+    .t-elo .art { left: auto; right: 7%; top: 14%; bottom: auto; width: 34%; height: 30%; }
+    .t-pod .art { left: auto; right: 7%; top: 16%; bottom: auto; width: 40%; height: 26%; }
+    .t-team .art { right: 5%; top: 12%; bottom: auto; width: 36%; }
+    .t-ted .art { font-size: 200px; bottom: -20%; }
   }
 </style>
 </head>
@@ -180,14 +196,14 @@
 
 <div class="stage" id="stage"><div class="pin">
 <div class="chip" id="chip" aria-hidden="true"></div>
-<svg class="fly" id="fly" viewBox="0 0 300 140" aria-hidden="true"><use href="#logo"/></svg>
+<svg class="fly" id="fly" viewBox="0 0 300 154" aria-hidden="true"><use href="#logo"/></svg>
 
 <!-- ÉCRAN 1 : les prochains rendez-vous -->
 <header class="intro" id="agenda">
   <div class="lines" aria-hidden="true" id="lines"></div>
 
   <div class="i-top">
-    <span>GEM en Débat</span>
+    <a class="i-brand" href="index.html" aria-label="GEM en Débat — accueil"><svg viewBox="0 0 300 154" role="img" aria-label="GEM en Débat"><use href="#logo"/></svg></a>
     <nav aria-label="Navigation principale">
       <a href="conferences.html">Conférences</a>
       <a href="eloquence.html">Éloquence</a>
@@ -204,7 +220,7 @@
 
   <!-- les événements sont ajoutés ici -->
 
-  <div class="i-logo" style="color:var(--ink)"><svg class="mark" viewBox="0 0 300 140" role="img" aria-label="GEM en Débat"><use href="#logo"/></svg></div>
+  <div class="i-logo" style="color:var(--ink)"><svg class="mark" viewBox="0 0 300 154" role="img" aria-label="GEM en Débat"><use href="#logo"/></svg></div>
   <a class="i-down" href="#univers"><span data-texte="accueil-decouvrir" style="animation:none">Découvrir l'asso</span> <span>↓</span></a>
 </header>
 
@@ -222,7 +238,7 @@
 
   <a class="tile t-elo" href="eloquence.html">
     <h2 class="display" data-texte="accueil-tuile-titre-eloquence">Éloquence</h2>
-    <svg class="art" viewBox="0 0 300 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <svg class="art" viewBox="0 0 300 154" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <path d="M20 128 C20 70 40 30 92 12 L100 30 C72 44 62 62 62 80 L100 80 L100 128 Z M130 128 C130 70 150 30 202 12 L210 30 C182 44 172 62 172 80 L210 80 L210 128 Z" fill="#f2f1ed"/>
     </svg>
     <p class="desc"><span data-texte="accueil-tuile-concours-ateliers-prise">Concours, ateliers, prise de parole</span> <span>→</span></p>
@@ -236,7 +252,7 @@
   </a>
 
   <div class="tile t-logo" aria-label="GEM en Débat">
-    <svg class="mark" viewBox="0 0 300 140" role="img" aria-label="Logo GEM en Débat"><use href="#logo"/></svg>
+    <svg class="mark" viewBox="0 0 300 154" role="img" aria-label="Logo GEM en Débat"><use href="#logo"/></svg>
   </div>
 
   <a class="tile t-quinz" href="la-quinzaine.html">
@@ -266,9 +282,9 @@
 
 <footer class="site-footer" data-site-footer></footer>
 
-<script src="assets/site.js?v=5"></script>
-<script src="assets/contenu.js?v=5"></script>
-<script src="assets/events.js?v=5"></script>
+<script src="assets/site.js?v=13"></script>
+<script src="assets/contenu.js?v=13"></script>
+<script src="assets/events.js?v=13"></script>
 <script>
 const $ = s => document.querySelector(s);
 const { esc, pad, hour, MONTHS, DAYS } = GEM;
@@ -365,14 +381,14 @@ $("#wave").innerHTML = [38, 72, 54, 92, 46, 80, 30, 64, 44].map((h, k) => `<i st
     const d = ease(clamp(p / .62));
     const x = lerp(from.x, to.x, d), y = lerp(from.y, to.y, d), w = lerp(from.w, to.w, d), h = lerp(from.h, to.h, d);
     chip.style.transform = `translate(${x}px, ${y}px) scale(${w / 100}, ${h / 100})`;
-    const dark = clamp(p / .12), g = Math.round(lerp(17, 242, dark));
+    const dark = clamp(p / .12), g = Math.round(lerp(244, 255, dark));
     chip.style.background = `rgb(${g},${g},${g})`;
     chip.style.boxShadow = `0 ${30 * Math.sin(Math.PI * d)}px ${60 * Math.sin(Math.PI * d)}px -20px rgba(0,0,0,.45)`;
 
     // le logo voyage avec lui et passe du bleu au blanc
     const fx = lerp(home.x, mark.x, d), fy = lerp(home.y, mark.y, d), fw = lerp(home.w, mark.w, d);
     fly.style.transform = `translate(${fx}px, ${fy}px) scale(${fw / home.w})`;
-    const ink = Math.round(lerp(242, 17, dark));
+    const ink = 17;
     fly.style.color = `rgb(${ink}, ${ink}, ${ink})`;
 
     // les autres carrés viennent le rejoindre

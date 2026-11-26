@@ -5,12 +5,12 @@
 
 /* couleur de chaque type d'événement : [fond, texte] */
 const TYPES = {
-  "Conférence": ["#f2f1ed", "#111111"],
+  "Conférence": ["#2f5bff", "#ffffff"],
   "TEDx":       ["#e1251b", "#ffffff"],
   "Éloquence":  ["#6f8fff", "#111111"],
   "Podcast":    ["#2a2a2a", "#f2f1ed"],
   "Café-débat": ["#2a2a2a", "#f2f1ed"],
-  "Autre":      ["#f2f1ed", "#111111"],
+  "Autre":      ["#111111", "#f4f3ef"],
 };
 
 (() => {
@@ -71,7 +71,7 @@ const TYPES = {
       const [c, fg] = colors(e.type);
       return `
       <li class="ev-row" style="--c:${c};--fg:${fg}">
-        <div class="ev-poster">${e.affiche ? `<img src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<svg viewBox="0 0 300 140" aria-hidden="true"><use href="#logo"/></svg></div>
+        <div class="ev-poster">${e.affiche ? `<img src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<svg viewBox="0 0 300 154" aria-hidden="true"><use href="#logo"/></svg></div>
         <div class="ev-date"><b>${day(e.when)}</b><span>${DAYS[e.when.getDay()]} · ${hour(e.when)}</span></div>
         <div class="ev-main">
           <span class="ev-type"><i></i>${esc(e.type)}</span>
@@ -94,7 +94,7 @@ const TYPES = {
       const [c, fg] = colors(e.type);
       return `
       <article class="ev-card" style="--c:${c};--fg:${fg}">
-        <div class="ev-card-img">${e.affiche ? `<img src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<svg viewBox="0 0 300 140" aria-hidden="true"><use href="#logo"/></svg></div>
+        <div class="ev-card-img">${e.affiche ? `<img src="${esc(e.affiche)}" alt="Affiche — ${esc(e.titre)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<svg viewBox="0 0 300 154" aria-hidden="true"><use href="#logo"/></svg></div>
         <span class="ev-card-d">${e.when.getDate()} ${MONTHS[e.when.getMonth()]} ${e.when.getFullYear()}</span>
         <h3>${esc(e.titre)}</h3>
         ${who(e) ? `<p>Avec ${esc(who(e))}</p>` : ""}
